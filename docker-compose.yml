@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  good-boi-bot:
+    image: good-boi
+    build:
+      context: .
+      dockerfile: ./Dockerfile
