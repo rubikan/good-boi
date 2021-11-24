@@ -5,8 +5,8 @@ import discord
 from discord.ext import commands
 
 EXTENSIONS = [
-    'cogs.general',
-    'cogs.reddit'
+    "cogs.general",
+    "cogs.reddit"
 ]
 
 def load_config():
@@ -25,7 +25,7 @@ class GoodBoiBot(commands.Bot):
             try:
                 self.load_extension(extension)
             except Exception as e:
-                print(f'Failed to load extension {extension}', e)
+                print(f"Failed to load extension {extension}. Reason: ", e)
 
     async def on_ready(self):
         await self.change_presence(activity=discord.Game(name="boi help"))
@@ -33,6 +33,6 @@ class GoodBoiBot(commands.Bot):
     def run(self):
         super().run(self.config["DISCORD_TOKEN"], reconnect=True)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     goodboi = GoodBoiBot()
     goodboi.run()
