@@ -6,4 +6,5 @@ General
 Reddit
 * disneyvacation | dv - Posts a random picture from the disneyvacation subreddit
 * shittyfoodporn | sfp - Posts a random picture from the shittyfoodporn subreddit
+* animalsbeingderps | abd - Posts a random picture from the AnimalsBeingDerps subreddit
 ```

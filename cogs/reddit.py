@@ -36,11 +36,12 @@ class Reddit(commands.Cog):
         """
         title = json[0]["data"]["children"][0]["data"]["title"]
         img_url = json[0]["data"]["children"][0]["data"]["url_overridden_by_dest"]
-        try:
-            permalink = const.REDDIT_TLD + json[1]["data"]["children"][0]["data"]["permalink"]
-        except IndexError:
-            permalink = img_url
-        embed = discord.Embed(title=title, url=permalink, color=const.EMBED_COLOR)
+
+        subreddit = json[0]["data"]["children"][0]["data"]["subreddit"]
+        post_id = json[0]["data"]["children"][0]["data"]["id"]
+        post_link = const.REDDIT_POST_LINK.format(subreddit=subreddit, id=post_id)
+
+        embed = discord.Embed(title=title, url=post_link, color=const.EMBED_COLOR)
         embed.set_image(url=img_url)
 
         return embed
@@ -54,6 +55,12 @@ class Reddit(commands.Cog):
     @commands.command(aliases=['dv'])
     async def disneyvacation(self, ctx):
         post_json = self.get_from_reddit("disneyvacation", "random", "1", "all")
+        embed = self.create_image_embed(post_json)
+        await ctx.send(embed=embed)
+
+    @commands.command(aliases=['abd'])
+    async def animalsbeingderps(self, ctx):
+        post_json = self.get_from_reddit("AnimalsBeingDerps", "random", "1", "all")
         embed = self.create_image_embed(post_json)
         await ctx.send(embed=embed)        
 
