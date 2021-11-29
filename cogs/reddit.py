@@ -1,12 +1,23 @@
 import discord
 import requests
+import re
 
 from util import const
 from discord.ext import commands
 
+IMGUR_REGEX = re.compile("https://imgur.com/([A-z0-9]+)")
+
 class Reddit(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+
+    @staticmethod
+    def map_imgur_url(url: str) -> str:
+        matches = IMGUR_REGEX.findall(url)
+        if len(matches) == 0:
+            return url
+        else:
+            return f"https://i.imgur.com/{matches[0]}.jpg"
 
     @staticmethod
     def get_from_reddit(subreddit, listing, count, timeframe):
@@ -36,6 +47,7 @@ class Reddit(commands.Cog):
         """
         title = json[0]["data"]["children"][0]["data"]["title"]
         img_url = json[0]["data"]["children"][0]["data"]["url_overridden_by_dest"]
+        img_url = Reddit.map_imgur_url(img_url)
 
         subreddit = json[0]["data"]["children"][0]["data"]["subreddit"]
         post_id = json[0]["data"]["children"][0]["data"]["id"]
