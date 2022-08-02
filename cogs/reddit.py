@@ -57,6 +57,30 @@ class Reddit(commands.Cog):
         embed.set_image(url=img_url)
 
         return embed
+
+    @commands.command(aliases=['abd'])
+    async def animalsbeingderps(self, ctx):
+        post_json = self.get_from_reddit("AnimalsBeingDerps", "random", "1", "all")
+        embed = self.create_image_embed(post_json)
+        await ctx.send(embed=embed)
+
+    @commands.command(aliases=['dem'])
+    async def dallemini(self, ctx):
+        post_json = self.get_from_reddit("dallemini", "random", "1", "all")
+        embed = self.create_image_embed(post_json)
+        await ctx.send(embed=embed)
+    
+    @commands.command(aliases=['dv'])
+    async def disneyvacation(self, ctx):
+        post_json = self.get_from_reddit("disneyvacation", "random", "1", "all")
+        embed = self.create_image_embed(post_json)
+        await ctx.send(embed=embed)
+
+    @commands.command(aliases=['ph'])
+    async def programmerhumor(self, ctx):
+        post_json = self.get_from_reddit("ProgrammerHumor", "random", "1", "all")
+        embed = self.create_image_embed(post_json)
+        await ctx.send(embed=embed)
      
     @commands.command(aliases=['sfp'])
     async def shittyfoodporn(self, ctx):
@@ -64,17 +88,11 @@ class Reddit(commands.Cog):
         embed = self.create_image_embed(post_json)
         await ctx.send(embed=embed)
 
-    @commands.command(aliases=['dv'])
-    async def disneyvacation(self, ctx):
-        post_json = self.get_from_reddit("disneyvacation", "random", "1", "all")
+    @commands.command(aliases=['wwp'])
+    async def wewantplates(self, ctx):
+        post_json = self.get_from_reddit("WeWantPlates", "random", "1", "all")
         embed = self.create_image_embed(post_json)
         await ctx.send(embed=embed)
-
-    @commands.command(aliases=['abd'])
-    async def animalsbeingderps(self, ctx):
-        post_json = self.get_from_reddit("AnimalsBeingDerps", "random", "1", "all")
-        embed = self.create_image_embed(post_json)
-        await ctx.send(embed=embed)        
 
 def setup(bot):
     bot.add_cog(Reddit(bot))

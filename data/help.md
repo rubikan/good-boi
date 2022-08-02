@@ -5,7 +5,10 @@ General
 * say   - Lets the bot say something
 
 Reddit
-* disneyvacation | dv       - Posts a random picture from the disneyvacation subreddit
-* shittyfoodporn | sfp      - Posts a random picture from the shittyfoodporn subreddit
 * animalsbeingderps | abd   - Posts a random picture from the AnimalsBeingDerps subreddit
+* dallemini | dem           - Posts a random picture from the dallemini subreddit
+* disneyvacation | dv       - Posts a random picture from the disneyvacation subreddit
+* programmerhumor | ph      - Posts a random picture from the ProgrammerHumor subreddit
+* shittyfoodporn | sfp      - Posts a random picture from the shittyfoodporn subreddit
+* wewantplates | wwp        - Posts a random picture from the WeWantPlates subreddit
 ```
