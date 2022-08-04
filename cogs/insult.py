@@ -1,10 +1,12 @@
 import discord
 import random
 import requests
+import uuid
 
 from discord.ext import commands
 
 API_URLS = { "https://evilinsult.com/generate_insult.php?lang=en&type=text","https://insult.mattbas.org/api/insult.text" }
+EVILINSULT = "evilinsult.com"
 
 class Insult(commands.Cog):
     def __init__(self, bot):
@@ -13,6 +15,12 @@ class Insult(commands.Cog):
     @staticmethod
     def get_random_insult():
         url = random.choice(list(API_URLS))
+
+        # Workaround because evilinsult.com caches requests in a weird way
+        # https://github.com/EvilInsultGenerator/website/issues/23
+        if EVILINSULT in url:
+            url = url + "&random=" + uuid.uuid4()
+
         return requests.get(url).text
 
     @commands.command()
