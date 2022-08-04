@@ -19,7 +19,7 @@ class Insult(commands.Cog):
         # Workaround because evilinsult.com caches requests in a weird way
         # https://github.com/EvilInsultGenerator/website/issues/23
         if EVILINSULT in url:
-            url = url + "&random=" + uuid.uuid4()
+            url = url + "&random=" + str(uuid.uuid4())
 
         return requests.get(url).text
 
