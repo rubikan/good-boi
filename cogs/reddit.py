@@ -76,6 +76,12 @@ class Reddit(commands.Cog):
         embed = self.create_image_embed(post_json)
         await ctx.send(embed=embed)
 
+    @commands.command(aliases=['irl'])
+    async def me_irl(self, ctx):
+        post_json = self.get_from_reddit("me_irl", "random", "1", "all")
+        embed = self.create_image_embed(post_json)
+        await ctx.send(embed=embed)
+
     @commands.command(aliases=['ph'])
     async def programmerhumor(self, ctx):
         post_json = self.get_from_reddit("ProgrammerHumor", "random", "1", "all")
