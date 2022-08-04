@@ -16,13 +16,12 @@ class Insult(commands.Cog):
         return requests.get(url).text
 
     @commands.command()
-    async def insult(self, ctx):
+    async def insultme(self, ctx):
         await ctx.send(f'{ctx.author.mention} {self.get_random_insult()}')
 
     @commands.command()
     async def insult(self, ctx, *, member: discord.Member):
         await ctx.send(f'{member.mention} {self.get_random_insult()}')
-
 
 def setup(bot):
     bot.add_cog(Insult(bot))
