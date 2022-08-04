@@ -5,7 +5,7 @@ General:
 * say   - Lets the bot say something
 
 Insult:
-* insult            - Insults you
+* insultme          - Insults you
 * insult {member}   - Insults the specified member
 
 Reddit:
