@@ -1,12 +1,12 @@
 ```
 General:
-* help  - This command
-* ping  - Check if the bot is working
-* say   - Lets the bot say something
+* help                      - This command
+* ping                      - Check if the bot is working
+* say                       - Lets the bot say something
 
 Insult:
-* insultme          - Insults you
-* insult {member}   - Insults the specified member
+* insultme                  - Insults you
+* insult {member}           - Insults the specified member
 
 Reddit:
 * animalsbeingderps | abd   - Posts a random picture from the AnimalsBeingDerps subreddit
@@ -18,7 +18,7 @@ Reddit:
 * wewantplates | wwp        - Posts a random picture from the WeWantPlates subreddit
 
 XKDC:
-* xkdc              - Posts the most recent XKDC comic
-* xkdc random       - Posts a random XKDC comic
-* xkdc {number}     - Posts the XKDC comic with the specified number
+* xkdc                      - Posts the most recent XKDC comic
+* xkdc random               - Posts a random XKDC comic
+* xkdc {number}             - Posts the XKDC comic with the specified number
 ```
