@@ -8,6 +8,7 @@ authors = ["Andreas Rubik <rubikandreas@gmail.com"]
 python = "^3.9"
 "discord.py" = "^1.7.3"
 requests = "^2.26.0"
+beautifulsoup4 = "^4.11.1"
 
 [tool.poetry.dev-dependencies]
 ipykernel = "^6.15.1"

@@ -7,7 +7,8 @@ from discord.ext import commands
 EXTENSIONS = [
     "cogs.general",
     "cogs.insult",
-    "cogs.reddit"
+    "cogs.reddit",
+    "cogs.xkdc"
 ]
 
 def load_config():

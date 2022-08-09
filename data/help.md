@@ -16,4 +16,9 @@ Reddit:
 * programmerhumor | ph      - Posts a random picture from the ProgrammerHumor subreddit
 * shittyfoodporn | sfp      - Posts a random picture from the shittyfoodporn subreddit
 * wewantplates | wwp        - Posts a random picture from the WeWantPlates subreddit
+
+XKDC:
+* xkdc              - Posts the most recent XKDC comic
+* xkdc random       - Posts a random XKDC comic
+* xkdc {number}     - Posts the XKDC comic with the specified number
 ```
