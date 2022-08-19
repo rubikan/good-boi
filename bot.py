@@ -2,6 +2,7 @@ import json
 
 import discord
 
+from util import text
 from discord.ext import commands
 
 EXTENSIONS = [
@@ -32,6 +33,13 @@ class GoodBoiBot(commands.Bot):
 
     async def on_ready(self):
         await self.change_presence(activity=discord.Game(name="boi help"))
+        if("ANNOUNCE_GUILDS" in self.config):
+            for announce_guild in self.config["ANNOUNCE_GUILDS"]:
+                guildId = int(announce_guild["GUILD_ID"])
+                guild = self.get_guild(guildId)
+                channelId = int(announce_guild["CHANNEL_ID"])
+                channel = guild.get_channel(channelId)
+                await channel.send(text.ANNOUNCE)
     
     def run(self):
         super().run(self.config["DISCORD_TOKEN"], reconnect=True)
