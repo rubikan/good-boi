@@ -30,10 +30,11 @@ class Explosm(commands.Cog):
 
     @commands.command(aliases=['c&h','cah'])
     async def explosm(self, ctx):
-        await ctx.send(text.WAIT)
+        waiting_msg = await ctx.send(text.WAIT)
         random_page = self.get_random_page()
         comic_url = self.extract_comic_url(random_page)
         await ctx.send(comic_url)
+        await waiting_msg.delete()
 
 def setup(bot):
     bot.add_cog(Explosm(bot))
