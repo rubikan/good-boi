@@ -4,6 +4,9 @@ General:
 * ping                      - Check if the bot is working
 * say                       - Lets the bot say something
 
+Explosm:
+* explosm | c&h | cah       - Posts a random explosm.net cyanide & happiness comic
+
 Insult:
 * insultme                  - Insults you
 * insult {member}           - Insults the specified member

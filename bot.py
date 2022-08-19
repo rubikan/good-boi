@@ -6,6 +6,7 @@ from discord.ext import commands
 
 EXTENSIONS = [
     "cogs.general",
+    "cogs.explosm",
     "cogs.insult",
     "cogs.reddit",
     "cogs.xkdc"

@@ -1,0 +1,1 @@
+WAIT = "Please wait a second..."
