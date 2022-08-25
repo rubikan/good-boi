@@ -20,6 +20,9 @@ Reddit:
 * shittyfoodporn | sfp      - Posts a random picture from the shittyfoodporn subreddit
 * wewantplates | wwp        - Posts a random picture from the WeWantPlates subreddit
 
+Static Files:
+* fuckin | fockin           - Posts the ProZD "THEY FUCKIN" mp3 file
+
 XKDC:
 * xkdc                      - Posts the most recent XKDC comic
 * xkdc random               - Posts a random XKDC comic

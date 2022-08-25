@@ -14,5 +14,7 @@ EVILINSULT = "evilinsult"
 REDDIT_URL = "https://www.reddit.com"
 REDDIT_API = REDDIT_URL + "/r/{subreddit}/{listing}.json?count={count}&t={timeframe}"
 REDDIT_POST_LINK = REDDIT_URL + "/r/{subreddit}/comments/{id}"
+# Static
+THEY_FOCKIN = "THEY_FOCKIN.mp3"
 # XKDC
 XKDC_URL = "https://xkcd.com/"

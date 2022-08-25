@@ -1,3 +1,6 @@
+def get_audio_path(filename: str):
+    return "data/audio/" + filename
+
 def read_string(filename: str):
     """
     Reads a file from the data directory or its subdirectories and returns it as a string.
