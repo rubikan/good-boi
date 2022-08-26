@@ -15,9 +15,13 @@ class General(commands.Cog):
 
     @commands.command()
     async def say(self, ctx):
-        message = discord_utils.extract_clean_message(ctx)
+        argumentMessage = discord_utils.extract_clean_message(ctx)
+        if ctx.message.reference is not None:
+            referencedMessage = await ctx.channel.fetch_message(ctx.message.reference.message_id)
+            await referencedMessage.reply(argumentMessage)
+        else:
+            await ctx.send(argumentMessage)
         await ctx.message.delete()
-        await ctx.send(message)
 
 def setup(bot):
     bot.add_cog(General(bot))
