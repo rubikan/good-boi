@@ -3,6 +3,7 @@ General:
 * help                      - This command
 * ping                      - Check if the bot is working
 * say                       - Lets the bot say something
+* zalgo                     - Lets the bot say something in zalgo text
 
 Explosm:
 * explosm | c&h | cah       - Posts a random explosm.net cyanide & happiness comic

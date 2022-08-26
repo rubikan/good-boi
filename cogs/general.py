@@ -1,5 +1,7 @@
 from util import data, discord_utils
+
 from discord.ext import commands
+from zalgo_text import zalgo
 
 class General(commands.Cog):
     def __init__(self, bot):
@@ -21,6 +23,16 @@ class General(commands.Cog):
             await referencedMessage.reply(argumentMessage)
         else:
             await ctx.send(argumentMessage)
+        await ctx.message.delete()
+
+    @commands.command()
+    async def zalgo(self, ctx):
+        zalgoMessage = zalgo.zalgo().zalgofy(discord_utils.extract_clean_message(ctx))
+        if ctx.message.reference is not None:
+            referencedMessage = await ctx.channel.fetch_message(ctx.message.reference.message_id)
+            await referencedMessage.reply(zalgoMessage)
+        else:
+            await ctx.send(zalgoMessage)
         await ctx.message.delete()
 
 def setup(bot):
