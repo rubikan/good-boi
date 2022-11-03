@@ -3,6 +3,7 @@ version: '3.4'
 services:
   good-boi-bot:
     image: good-boi
+    restart: unless-stopped
     build:
       context: .
       dockerfile: ./Dockerfile
