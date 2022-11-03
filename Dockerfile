@@ -1,4 +1,4 @@
-FROM python:3.9-slim-buster
+FROM python:3.11-slim-buster
 
 RUN python -m pip install --upgrade pip
 RUN pip install poetry

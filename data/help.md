@@ -12,6 +12,9 @@ Insult:
 * insultme                  - Insults you
 * insult {member}           - Insults the specified member
 
+Magic: The Gathering:
+* scry cards {card name}    - Searches for a MTG card in the scryfall api
+
 Reddit:
 * animalsbeingderps | abd   - Posts a random picture from the AnimalsBeingDerps subreddit
 * dallemini | dem           - Posts a random picture from the dallemini subreddit

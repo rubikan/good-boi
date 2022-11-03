@@ -9,6 +9,7 @@ EXTENSIONS = [
     "cogs.general",
     "cogs.explosm",
     "cogs.insult",
+    "cogs.mtg",
     "cogs.reddit",
     "cogs.static",
     "cogs.xkdc"
