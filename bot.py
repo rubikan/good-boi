@@ -1,9 +1,12 @@
 import json
 
 import discord
+import logging
 
 from util import text
 from discord.ext import commands
+
+_log = logging.getLogger(__name__)
 
 EXTENSIONS = [
     "cogs.general",
@@ -27,11 +30,14 @@ class GoodBoiBot(commands.Bot):
 
     def __init__(self):
         super().__init__(command_prefix=self.command_prefix, description=self.description, intents=self.intents, help_command = None)
+
+    async def setup_hook(self) -> None:
         for extension in EXTENSIONS:
             try:
-                self.load_extension(extension)
+                _log.info(f"Loading extension {extension}")
+                await self.load_extension(extension)
             except Exception as e:
-                print(f"Failed to load extension {extension}. Reason: ", e)
+                _log.info(f"Failed to load extension {extension}. Reason: ", e)
 
     async def on_ready(self):
         await self.change_presence(activity=discord.Game(name="boi help"))

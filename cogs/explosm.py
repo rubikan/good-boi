@@ -36,5 +36,5 @@ class Explosm(commands.Cog):
         await ctx.send(comic_url)
         await waiting_msg.delete()
 
-def setup(bot):
-    bot.add_cog(Explosm(bot))
+async def setup(bot):
+    await bot.add_cog(Explosm(bot))

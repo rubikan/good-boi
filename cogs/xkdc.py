@@ -38,5 +38,5 @@ class XKDC(commands.Cog):
         elif argument.isdigit() and 1 <= int(argument) <= self.get_newest_id(self):
             await ctx.send(const.XKDC_URL + argument)
 
-def setup(bot):
-    bot.add_cog(XKDC(bot))
+async def setup(bot):
+    await bot.add_cog(XKDC(bot))

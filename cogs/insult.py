@@ -29,5 +29,5 @@ class Insult(commands.Cog):
     async def insult(self, ctx, *, member: discord.Member):
         await ctx.send(f'{member.mention} {self.get_random_insult()}')
 
-def setup(bot):
-    bot.add_cog(Insult(bot))
+async def setup(bot):
+    await bot.add_cog(Insult(bot))

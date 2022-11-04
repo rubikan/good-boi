@@ -100,5 +100,5 @@ class Reddit(commands.Cog):
         embed = self.create_image_embed(post_json)
         await ctx.send(embed=embed)
 
-def setup(bot):
-    bot.add_cog(Reddit(bot))
+async def setup(bot):
+    await bot.add_cog(Reddit(bot))

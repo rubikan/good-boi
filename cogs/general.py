@@ -35,5 +35,5 @@ class General(commands.Cog):
             await ctx.send(zalgoMessage)
         await ctx.message.delete()
 
-def setup(bot):
-    bot.add_cog(General(bot))
+async def setup(bot):
+    await bot.add_cog(General(bot))

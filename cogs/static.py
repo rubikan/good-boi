@@ -16,5 +16,5 @@ class Static(commands.Cog):
             await ctx.send(file = discord.File(data.get_audio_path(const.THEY_FOCKIN)))
         await ctx.message.delete()
 
-def setup(bot):
-    bot.add_cog(Static(bot))
+async def setup(bot):
+    await bot.add_cog(Static(bot))
