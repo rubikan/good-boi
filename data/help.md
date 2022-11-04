@@ -1,9 +1,10 @@
 ```
 General:
 * help                      - This command
+* mock {text}               - Mocks the given texts (e.g. bAnAnA)
 * ping                      - Check if the bot is working
-* say                       - Lets the bot say something
-* zalgo                     - Lets the bot say something in zalgo text
+* say {text}                - Lets the bot say something
+* zalgo {text}              - Lets the bot say something in zalgo text
 
 Explosm:
 * explosm | c&h | cah       - Posts a random explosm.net cyanide & happiness comic
