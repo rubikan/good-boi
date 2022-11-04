@@ -8,12 +8,22 @@ class General(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    async def ping(self, ctx):
-        await ctx.send("pong! 🏓")
-
-    @commands.command()
     async def help(self, ctx):
         await ctx.send(data.read_string("help.md"))
+
+    @commands.command()
+    async def mock(self, ctx, *, arg):
+        mocked = ""
+        for idx in range(len(arg)):
+            if not idx % 2 :
+                mocked = mocked + arg[idx].lower()
+            else:
+                mocked = mocked + arg[idx].upper()
+        await ctx.send(mocked)
+
+    @commands.command()
+    async def ping(self, ctx):
+        await ctx.send("pong! 🏓")
 
     @commands.command()
     async def say(self, ctx):
