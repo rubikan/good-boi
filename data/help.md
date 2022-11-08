@@ -14,7 +14,7 @@ Insult:
 * insult {member}           - Insults the specified member
 
 Magic: The Gathering:
-* scry cards {card name}    - Searches for a MTG card in the scryfall api
+* scry {card name}          - Searches for a MTG card in the scryfall api
 
 Reddit:
 * animalsbeingderps | abd   - Posts a random picture from the AnimalsBeingDerps subreddit
