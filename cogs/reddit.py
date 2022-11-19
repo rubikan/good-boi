@@ -63,13 +63,25 @@ class Reddit(commands.Cog):
         post_json = self.get_from_reddit("AnimalsBeingDerps", "random", "1", "all")
         embed = self.create_image_embed(post_json)
         await ctx.send(embed=embed)
-
+    
     @commands.command(aliases=['dem'])
     async def dallemini(self, ctx):
         post_json = self.get_from_reddit("dallemini", "random", "1", "all")
         embed = self.create_image_embed(post_json)
         await ctx.send(embed=embed)
     
+    @commands.command(aliases=['ep'])
+    async def earthporn(self, ctx):
+        post_json = self.get_from_reddit("earthporn", "random", "1", "all")
+        embed = self.create_image_embed(post_json)
+        await ctx.send(embed=embed)
+    
+    @commands.command(aliases=['ncp'])
+    async def nocontextpics(self, ctx):
+        post_json = self.get_from_reddit("nocontextpics", "random", "1", "all")
+        embed = self.create_image_embed(post_json)
+        await ctx.send(embed=embed)
+
     @commands.command(aliases=['dv'])
     async def disneyvacation(self, ctx):
         post_json = self.get_from_reddit("disneyvacation", "random", "1", "all")
@@ -79,6 +91,12 @@ class Reddit(commands.Cog):
     @commands.command(aliases=['irl'])
     async def me_irl(self, ctx):
         post_json = self.get_from_reddit("me_irl", "random", "1", "all")
+        embed = self.create_image_embed(post_json)
+        await ctx.send(embed=embed)
+
+    @commands.command(aliases=['otg'])
+    async def onetruegodl(self, ctx):
+        post_json = self.get_from_reddit("onetruegod", "random", "1", "all")
         embed = self.create_image_embed(post_json)
         await ctx.send(embed=embed)
 
