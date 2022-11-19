@@ -6,7 +6,7 @@ RUN apk update && apk add gcc bash libc-dev --no-cache &&\
     poetry config virtualenvs.create false
 
 COPY pyproject.toml poetry.lock ./
-RUN poetry install --no-dev
+RUN poetry install --only main
 
 COPY . .
 CMD ["python", "bot.py"]
