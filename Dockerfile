@@ -1,6 +1,6 @@
-FROM python:3.11-slim-buster
+FROM python:3.11-alpine
 
-RUN apt-get update && apt-get install gcc -y && apt-get clean \
+RUN apk update && apk add gcc bash libc-dev --no-cache &&\
     python -m pip install --upgrade pip && \
     pip install poetry && \
     poetry config virtualenvs.create false
