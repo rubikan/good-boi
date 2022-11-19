@@ -20,7 +20,10 @@ Reddit:
 * animalsbeingderps | abd   - Posts a random picture from the AnimalsBeingDerps subreddit
 * dallemini | dem           - Posts a random picture from the dallemini subreddit
 * disneyvacation | dv       - Posts a random picture from the disneyvacation subreddit
+* earthporn | ep            - Posts a random picture from the earthporn subreddit
 * me_irl | irl              - Posts a random picture from the me_irl subreddit
+* nocontextpics | ncp       - Posts a random picture from the nocontextpics subreddit
+* onetruegod | otg          - Posts a random picture from the onetruegod subreddit 
 * programmerhumor | ph      - Posts a random picture from the ProgrammerHumor subreddit
 * shittyfoodporn | sfp      - Posts a random picture from the shittyfoodporn subreddit
 * wewantplates | wwp        - Posts a random picture from the WeWantPlates subreddit
