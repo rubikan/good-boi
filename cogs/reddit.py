@@ -58,6 +58,23 @@ class Reddit(commands.Cog):
 
         return embed
 
+    @staticmethod
+    def create_text_embed(json):
+        """
+        Creates an embed containing text from the given reddit json. Only works if the title, url_overridden_by_dest and permalink attributes are present
+        """
+        title = json[0]["data"]["children"][0]["data"]["title"]
+
+        subreddit = json[0]["data"]["children"][0]["data"]["subreddit"]
+        post_id = json[0]["data"]["children"][0]["data"]["id"]
+        post_link = const.REDDIT_POST_LINK.format(subreddit=subreddit, id=post_id)
+        
+        selftext = json[0]["data"]["children"][0]["data"]["selftext"]
+
+        embed = discord.Embed(title=title, url=post_link, color=const.EMBED_COLOR, description=selftext)
+
+        return embed
+    
     @commands.command(aliases=['abd'])
     async def animalsbeingderps(self, ctx):
         post_json = self.get_from_reddit("AnimalsBeingDerps", "random", "1", "all")
@@ -68,6 +85,12 @@ class Reddit(commands.Cog):
     async def dallemini(self, ctx):
         post_json = self.get_from_reddit("dallemini", "random", "1", "all")
         embed = self.create_image_embed(post_json)
+        await ctx.send(embed=embed)
+
+    @commands.command(aliases=['dj'])
+    async def dadjokes(self, ctx):
+        post_json = self.get_from_reddit("dadjokes", "random", "1", "all")
+        embed = self.create_text_embed(post_json)     
         await ctx.send(embed=embed)
 
     @commands.command(aliases=['dv'])
@@ -86,6 +109,12 @@ class Reddit(commands.Cog):
     async def me_irl(self, ctx):
         post_json = self.get_from_reddit("me_irl", "random", "1", "all")
         embed = self.create_image_embed(post_json)
+        await ctx.send(embed=embed)
+
+    @commands.command(aliases=['jk'])
+    async def jokes(self, ctx):
+        post_json = self.get_from_reddit("jokes", "random", "1", "all")
+        embed = self.create_text_embed(post_json)     
         await ctx.send(embed=embed)
 
     @commands.command(aliases=['ncp'])
