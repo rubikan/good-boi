@@ -16,5 +16,5 @@ REDDIT_API = REDDIT_URL + "/r/{subreddit}/{listing}.json?count={count}&t={timefr
 REDDIT_POST_LINK = REDDIT_URL + "/r/{subreddit}/comments/{id}"
 # Static
 THEY_FOCKIN = "THEY_FOCKIN.mp3"
-# XKDC
-XKDC_URL = "https://xkcd.com/"
+# xkcd
+XKCD_URL = "https://xkcd.com/"
