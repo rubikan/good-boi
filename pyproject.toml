@@ -5,12 +5,13 @@ description = ""
 authors = ["Andreas Rubik <rubikandreas@gmail.com"]
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.10"
 "discord.py" = "^2.0.1"
 requests = "^2.28.1"
 beautifulsoup4 = "^4.11.1"
 zalgo-text = "^0.6"
 scrython = "^1.11.0"
+replicate = "^0.4.0"
 
 [tool.poetry.dev-dependencies]
 ipykernel = "^6.15.1"
