@@ -11,6 +11,7 @@ class General(commands.Cog):
     @commands.command()
     async def help(self, ctx):
         await ctx.send(data.read_string("help.md"))
+        await ctx.message.delete()
 
     @commands.command()
     async def mock(self, ctx, *, arg):
@@ -21,6 +22,7 @@ class General(commands.Cog):
             else:
                 mocked = mocked + arg[idx].upper()
         await ctx.send(mocked)
+        await ctx.message.delete()
 
     @commands.command()
     async def ping(self, ctx):

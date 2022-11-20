@@ -25,10 +25,12 @@ class Insult(commands.Cog):
     @commands.command()
     async def insultme(self, ctx):
         await ctx.send(f"{ctx.author.mention} {self.get_random_insult()}")
+        await ctx.message.delete()
 
     @commands.command()
     async def insult(self, ctx, *, member: discord.Member):
         await ctx.send(f"{member.mention} {self.get_random_insult()}")
+        await ctx.message.delete()
 
 
 async def setup(bot):
