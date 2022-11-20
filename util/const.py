@@ -7,6 +7,9 @@ EXPLOSM_LATEST = EXPLOSM_URL + "/comics/latest"
 EXPLOSM_SELECT_CONTAINER = "ComicSelector__Container-sc-tx5aab-0"
 EXPLOSM_COMIC_CONTAINER = "MainComic__ComicImage-sc-ndbx87-2"
 EXPLOSM_RANDOM_UPPER_LIMIT = 100
+# Image Generator
+OJ_MODEL = "prompthero/openjourney"
+PKM_MODEL = "lambdal/text-to-pokemon"
 # Insult
 API_URLS = {
     "https://evilinsult.com/generate_insult.php?lang=en&type=text",
