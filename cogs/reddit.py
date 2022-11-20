@@ -80,17 +80,17 @@ class Reddit(commands.Cog):
         post_json = self.get_from_reddit("AnimalsBeingDerps", "random", "1", "all")
         embed = self.create_image_embed(post_json)
         await ctx.send(embed=embed)
-    
-    @commands.command(aliases=['dem'])
-    async def dallemini(self, ctx):
-        post_json = self.get_from_reddit("dallemini", "random", "1", "all")
-        embed = self.create_image_embed(post_json)
-        await ctx.send(embed=embed)
 
     @commands.command(aliases=['dj'])
     async def dadjokes(self, ctx):
         post_json = self.get_from_reddit("dadjokes", "random", "1", "all")
         embed = self.create_text_embed(post_json)     
+        await ctx.send(embed=embed)
+    
+    @commands.command(aliases=['dem'])
+    async def dallemini(self, ctx):
+        post_json = self.get_from_reddit("dallemini", "random", "1", "all")
+        embed = self.create_image_embed(post_json)
         await ctx.send(embed=embed)
 
     @commands.command(aliases=['dv'])
@@ -105,16 +105,16 @@ class Reddit(commands.Cog):
         embed = self.create_image_embed(post_json)
         await ctx.send(embed=embed)
 
-    @commands.command(aliases=['irl'])
-    async def me_irl(self, ctx):
-        post_json = self.get_from_reddit("me_irl", "random", "1", "all")
-        embed = self.create_image_embed(post_json)
-        await ctx.send(embed=embed)
-
     @commands.command(aliases=['jk'])
     async def jokes(self, ctx):
         post_json = self.get_from_reddit("jokes", "random", "1", "all")
         embed = self.create_text_embed(post_json)     
+        await ctx.send(embed=embed)
+
+    @commands.command(aliases=['irl'])
+    async def me_irl(self, ctx):
+        post_json = self.get_from_reddit("me_irl", "random", "1", "all")
+        embed = self.create_image_embed(post_json)
         await ctx.send(embed=embed)
 
     @commands.command(aliases=['ncp'])
@@ -124,7 +124,7 @@ class Reddit(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(aliases=['otg'])
-    async def onetruegodl(self, ctx):
+    async def onetruegod(self, ctx):
         post_json = self.get_from_reddit("onetruegod", "random", "1", "all")
         embed = self.create_image_embed(post_json)
         await ctx.send(embed=embed)

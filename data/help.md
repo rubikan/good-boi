@@ -9,6 +9,9 @@ General:
 Explosm:
 * explosm | c&h | cah       - Posts a random explosm.net cyanide & happiness comic
 
+Image generation (stable diffusion):
+* generate <prompt>         - Generates an image for the given prompt
+
 Insult:
 * insultme                  - Insults you
 * insult {member}           - Insults the specified member
@@ -35,7 +38,4 @@ xkcd:
 * xkcd                      - Posts the most recent xkcd comic
 * xkcd random               - Posts a random xkcd comic
 * xkcd {number}             - Posts the xkcd comic with the specified number
-
-Image generation (stable diffusion):
-* generate <prompt>         - Generates an image for the given prompt
 ```
