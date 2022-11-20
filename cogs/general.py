@@ -3,6 +3,7 @@ from util import data, discord_utils
 from discord.ext import commands
 from zalgo_text import zalgo
 
+
 class General(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -15,7 +16,7 @@ class General(commands.Cog):
     async def mock(self, ctx, *, arg):
         mocked = ""
         for idx in range(len(arg)):
-            if not idx % 2 :
+            if not idx % 2:
                 mocked = mocked + arg[idx].lower()
             else:
                 mocked = mocked + arg[idx].upper()
@@ -29,7 +30,9 @@ class General(commands.Cog):
     async def say(self, ctx):
         argumentMessage = discord_utils.extract_clean_message(ctx)
         if ctx.message.reference is not None:
-            referencedMessage = await ctx.channel.fetch_message(ctx.message.reference.message_id)
+            referencedMessage = await ctx.channel.fetch_message(
+                ctx.message.reference.message_id
+            )
             await referencedMessage.reply(argumentMessage)
         else:
             await ctx.send(argumentMessage)
@@ -39,11 +42,14 @@ class General(commands.Cog):
     async def zalgo(self, ctx):
         zalgoMessage = zalgo.zalgo().zalgofy(discord_utils.extract_clean_message(ctx))
         if ctx.message.reference is not None:
-            referencedMessage = await ctx.channel.fetch_message(ctx.message.reference.message_id)
+            referencedMessage = await ctx.channel.fetch_message(
+                ctx.message.reference.message_id
+            )
             await referencedMessage.reply(zalgoMessage)
         else:
             await ctx.send(zalgoMessage)
         await ctx.message.delete()
+
 
 async def setup(bot):
     await bot.add_cog(General(bot))

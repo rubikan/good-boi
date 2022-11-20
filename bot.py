@@ -53,6 +53,5 @@ class GoodBoiBot(commands.Bot):
                 channel = guild.get_channel(channelId)
                 await channel.send(text.ANNOUNCE)
 
-if __name__ == "__main__":
-    goodboi = GoodBoiBot()
-    goodboi.run(goodboi.config["DISCORD_TOKEN"])
+goodboi = GoodBoiBot()
+goodboi.run(goodboi.config["DISCORD_TOKEN"])

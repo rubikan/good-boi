@@ -5,6 +5,7 @@ from util import const, text
 from bs4 import BeautifulSoup
 from discord.ext import commands
 
+
 class Explosm(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -15,12 +16,16 @@ class Explosm(commands.Cog):
         soup = BeautifulSoup(page.content, "html.parser")
         rand_int = random.randint(1, const.EXPLOSM_RANDOM_UPPER_LIMIT)
         for i in range(rand_int):
-            selectContainerDiv = soup.find("div", {"class":const.EXPLOSM_SELECT_CONTAINER})
+            selectContainerDiv = soup.find(
+                "div", {"class": const.EXPLOSM_SELECT_CONTAINER}
+            )
             random_url = selectContainerDiv.select("div > a")[1]["href"]
-            page = requests.get(const.EXPLOSM_URL + random_url, headers=const.REQUEST_HEADERS)
+            page = requests.get(
+                const.EXPLOSM_URL + random_url, headers=const.REQUEST_HEADERS
+            )
             soup = BeautifulSoup(page.content, "html.parser")
 
-        return soup  
+        return soup
 
     @staticmethod
     def extract_comic_url(soup: BeautifulSoup):
@@ -28,13 +33,14 @@ class Explosm(commands.Cog):
         imgTag = comicContainerDiv.findChild("img")
         return imgTag["src"]
 
-    @commands.command(aliases=['c&h','cah'])
+    @commands.command(aliases=["c&h", "cah"])
     async def explosm(self, ctx):
         waiting_msg = await ctx.send(text.WAIT)
         random_page = self.get_random_page()
         comic_url = self.extract_comic_url(random_page)
         await ctx.send(comic_url)
         await waiting_msg.delete()
+
 
 async def setup(bot):
     await bot.add_cog(Explosm(bot))

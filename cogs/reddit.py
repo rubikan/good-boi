@@ -7,6 +7,7 @@ from discord.ext import commands
 
 IMGUR_REGEX = re.compile("https://imgur.com/([A-z0-9]+)")
 
+
 class Reddit(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -34,7 +35,9 @@ class Reddit(commands.Cog):
             Result of the reddit api call as json
         """
         try:
-            call_url = const.REDDIT_API.format(subreddit=subreddit, listing=listing, count=count, timeframe=timeframe)
+            call_url = const.REDDIT_API.format(
+                subreddit=subreddit, listing=listing, count=count, timeframe=timeframe
+            )
             request = requests.get(call_url, headers=const.REQUEST_HEADERS)
         except Exception as e:
             print(f"Error calling {call_url}. Reason: ", e)
@@ -68,84 +71,87 @@ class Reddit(commands.Cog):
         subreddit = json[0]["data"]["children"][0]["data"]["subreddit"]
         post_id = json[0]["data"]["children"][0]["data"]["id"]
         post_link = const.REDDIT_POST_LINK.format(subreddit=subreddit, id=post_id)
-        
+
         selftext = json[0]["data"]["children"][0]["data"]["selftext"]
 
-        embed = discord.Embed(title=title, url=post_link, color=const.EMBED_COLOR, description=selftext)
+        embed = discord.Embed(
+            title=title, url=post_link, color=const.EMBED_COLOR, description=selftext
+        )
 
         return embed
-    
-    @commands.command(aliases=['abd'])
+
+    @commands.command(aliases=["abd"])
     async def animalsbeingderps(self, ctx):
         post_json = self.get_from_reddit("AnimalsBeingDerps", "random", "1", "all")
         embed = self.create_image_embed(post_json)
         await ctx.send(embed=embed)
 
-    @commands.command(aliases=['dj'])
+    @commands.command(aliases=["dj"])
     async def dadjokes(self, ctx):
         post_json = self.get_from_reddit("dadjokes", "random", "1", "all")
-        embed = self.create_text_embed(post_json)     
+        embed = self.create_text_embed(post_json)
         await ctx.send(embed=embed)
-    
-    @commands.command(aliases=['dem'])
+
+    @commands.command(aliases=["dem"])
     async def dallemini(self, ctx):
         post_json = self.get_from_reddit("dallemini", "random", "1", "all")
         embed = self.create_image_embed(post_json)
         await ctx.send(embed=embed)
 
-    @commands.command(aliases=['dv'])
+    @commands.command(aliases=["dv"])
     async def disneyvacation(self, ctx):
         post_json = self.get_from_reddit("disneyvacation", "random", "1", "all")
         embed = self.create_image_embed(post_json)
         await ctx.send(embed=embed)
-  
-    @commands.command(aliases=['ep'])
+
+    @commands.command(aliases=["ep"])
     async def earthporn(self, ctx):
         post_json = self.get_from_reddit("earthporn", "random", "1", "all")
         embed = self.create_image_embed(post_json)
         await ctx.send(embed=embed)
 
-    @commands.command(aliases=['jk'])
+    @commands.command(aliases=["jk"])
     async def jokes(self, ctx):
         post_json = self.get_from_reddit("jokes", "random", "1", "all")
-        embed = self.create_text_embed(post_json)     
+        embed = self.create_text_embed(post_json)
         await ctx.send(embed=embed)
 
-    @commands.command(aliases=['irl'])
+    @commands.command(aliases=["irl"])
     async def me_irl(self, ctx):
         post_json = self.get_from_reddit("me_irl", "random", "1", "all")
         embed = self.create_image_embed(post_json)
         await ctx.send(embed=embed)
 
-    @commands.command(aliases=['ncp'])
+    @commands.command(aliases=["ncp"])
     async def nocontextpics(self, ctx):
         post_json = self.get_from_reddit("nocontextpics", "random", "1", "all")
         embed = self.create_image_embed(post_json)
         await ctx.send(embed=embed)
 
-    @commands.command(aliases=['otg'])
+    @commands.command(aliases=["otg"])
     async def onetruegod(self, ctx):
         post_json = self.get_from_reddit("onetruegod", "random", "1", "all")
         embed = self.create_image_embed(post_json)
         await ctx.send(embed=embed)
 
-    @commands.command(aliases=['ph'])
+    @commands.command(aliases=["ph"])
     async def programmerhumor(self, ctx):
         post_json = self.get_from_reddit("ProgrammerHumor", "random", "1", "all")
         embed = self.create_image_embed(post_json)
         await ctx.send(embed=embed)
-     
-    @commands.command(aliases=['sfp'])
+
+    @commands.command(aliases=["sfp"])
     async def shittyfoodporn(self, ctx):
         post_json = self.get_from_reddit("shittyfoodporn", "random", "1", "all")
         embed = self.create_image_embed(post_json)
         await ctx.send(embed=embed)
 
-    @commands.command(aliases=['wwp'])
+    @commands.command(aliases=["wwp"])
     async def wewantplates(self, ctx):
         post_json = self.get_from_reddit("WeWantPlates", "random", "1", "all")
         embed = self.create_image_embed(post_json)
         await ctx.send(embed=embed)
+
 
 async def setup(bot):
     await bot.add_cog(Reddit(bot))

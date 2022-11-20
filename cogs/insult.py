@@ -6,6 +6,7 @@ import uuid
 from util import const
 from discord.ext import commands
 
+
 class Insult(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -23,11 +24,12 @@ class Insult(commands.Cog):
 
     @commands.command()
     async def insultme(self, ctx):
-        await ctx.send(f'{ctx.author.mention} {self.get_random_insult()}')
+        await ctx.send(f"{ctx.author.mention} {self.get_random_insult()}")
 
     @commands.command()
     async def insult(self, ctx, *, member: discord.Member):
-        await ctx.send(f'{member.mention} {self.get_random_insult()}')
+        await ctx.send(f"{member.mention} {self.get_random_insult()}")
+
 
 async def setup(bot):
     await bot.add_cog(Insult(bot))
