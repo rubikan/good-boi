@@ -5,7 +5,7 @@ description = ""
 authors = ["Andreas Rubik <rubikandreas@gmail.com"]
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.11"
 "discord.py" = "^2.0.1"
 requests = "^2.28.1"
 beautifulsoup4 = "^4.11.1"
