@@ -14,10 +14,9 @@ EXTENSIONS = [
     "cogs.explosm",
     "cogs.image_generator",
     "cogs.insult",
-    "cogs.mtg",
     "cogs.reddit",
     "cogs.static",
-    "cogs.xkcd"  
+    "cogs.xkcd"
 ]
 
 def load_config():
