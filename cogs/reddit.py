@@ -111,6 +111,12 @@ class Reddit(commands.Cog):
         embed = self.create_image_embed(post_json)
         await ctx.send(embed=embed)
 
+    @commands.command(aliases=['jk'])
+    async def jokes(self, ctx):
+        post_json = self.get_from_reddit("jokes", "random", "1", "all")
+        embed = self.create_text_embed(post_json)     
+        await ctx.send(embed=embed)
+
     @commands.command(aliases=['ncp'])
     async def nocontextpics(self, ctx):
         post_json = self.get_from_reddit("nocontextpics", "random", "1", "all")
