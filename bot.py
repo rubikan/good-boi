@@ -15,6 +15,7 @@ EXTENSIONS = [
     "cogs.insult",
     "cogs.reddit",
     "cogs.static",
+    "cogs.voice",
     "cogs.xkcd",
 ]
 

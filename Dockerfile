@@ -1,6 +1,6 @@
 FROM python:3.11-alpine
 
-RUN apk update && apk add gcc bash libc-dev --no-cache &&\
+RUN apk update && apk add gcc bash libc-dev ffmpeg --no-cache &&\
     python -m pip install --upgrade pip && \
     pip install poetry && \
     poetry config virtualenvs.create false
