@@ -31,13 +31,11 @@ Reddit:
 * shittyfoodporn | sfp      - Posts a random image from the shittyfoodporn subreddit
 * wewantplates | wwp        - Posts a random image from the WeWantPlates subreddit
 
-Static Files:
-* fuckin | fockin           - Posts the ProZD "THEY FUCKIN" mp3 file
-
 Voice Channel:
 * join                      - Joins the voice channel of the user
 * join <channel>            - Joins the given voice channel
 * leave                     - Leaves any voice channel the bot is currently connected to
+* fuckin | fockin           - Plays the ProZD "THEY FUCKIN" audioclip
 
 xkcd:
 * xkcd                      - Posts the most recent xkcd comic
