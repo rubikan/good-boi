@@ -9,13 +9,15 @@ class Voice(commands.Cog):
         self.bot = bot
 
     @staticmethod
-    async def play_file(ctx, file):
-        try:
-            server = ctx.message.guild
-            voice_channel = server.voice_client
-            voice_channel.play(discord.FFmpegPCMAudio(executable="ffmpeg", source=file))
-        except:
+    async def play_file(ctx, file_path):
+        server = ctx.message.guild
+        voice_channel = server.voice_client
+        if voice_channel is None:
             await ctx.send(text.VOICE_NOT_CONNECTED)
+        else:
+            voice_channel.play(
+                discord.FFmpegPCMAudio(executable="ffmpeg", source=file_path)
+            )
 
     @commands.command()
     async def join(self, ctx, channel: discord.VoiceChannel = None):
@@ -31,8 +33,8 @@ class Voice(commands.Cog):
 
     @commands.command(aliases=["fockin"])
     async def fuckin(self, ctx):
-        file = discord.File(data.get_audio_path(const.THEY_FOCKIN))
-        await self.play_file(ctx, file)
+        file_path = data.get_audio_path(const.THEY_FOCKIN)
+        await self.play_file(ctx, file_path)
 
 
 async def setup(bot):

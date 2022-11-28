@@ -2,6 +2,7 @@ import discord
 import json
 import logging
 import os
+import sys
 
 from util import text
 from discord.ext import commands
@@ -9,11 +10,12 @@ from discord.ext import commands
 _log = logging.getLogger(__name__)
 
 EXTENSIONS = [
-    "cogs.general",
     "cogs.explosm",
+    "cogs.general",
     "cogs.image_generator",
     "cogs.insult",
     "cogs.reddit",
+    "cogs.voice_music",
     "cogs.voice",
     "cogs.xkcd",
 ]
@@ -48,6 +50,7 @@ class GoodBoiBot(commands.Bot):
                 await self.load_extension(extension)
             except Exception as e:
                 _log.info(f"Failed to load extension {extension}. Reason: ", e)
+                print(e)
 
     async def on_ready(self):
         await self.change_presence(activity=discord.Game(name="boi help"))

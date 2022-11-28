@@ -1,6 +1,12 @@
 ```
+#########################
+# TEXT CHANNEL COMMANDS #
+#########################
+
 General:
 * help                      - This command
+* help text                 - This command
+* help voice                - Commands for voice-centric functions
 * mock <text>               - Mocks the given text (e.g. bAnAnA)
 * ping                      - Check if the bot is working
 * say <text>                - Lets the bot say the given text
@@ -30,12 +36,6 @@ Reddit:
 * programmerhumor | ph      - Posts a random image from the ProgrammerHumor subreddit
 * shittyfoodporn | sfp      - Posts a random image from the shittyfoodporn subreddit
 * wewantplates | wwp        - Posts a random image from the WeWantPlates subreddit
-
-Voice Channel:
-* join                      - Joins the voice channel of the user
-* join <channel>            - Joins the given voice channel
-* leave                     - Leaves any voice channel the bot is currently connected to
-* fuckin | fockin           - Plays the ProZD "THEY FUCKIN" audioclip
 
 xkcd:
 * xkcd                      - Posts the most recent xkcd comic

@@ -9,8 +9,14 @@ class General(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    async def help(self, ctx):
-        await ctx.send(data.read_string("help.md"))
+    async def help(self, ctx, argument=None):
+        if argument == None:
+            await ctx.send(data.read_string("help.md"))
+        elif argument.lower() == "text":
+            await ctx.send(data.read_string("help.md"))
+        elif argument.lower() == "voice":
+            await ctx.send(data.read_string("help_voice.md"))
+
         await ctx.message.delete()
 
     @commands.command()

@@ -13,6 +13,7 @@ beautifulsoup4 = "^4.11.1"
 zalgo-text = "^0.6"
 scrython = "^1.11.0"
 replicate = "^0.4.0"
+yt-dlp = "^2022.11.11"
 
 [tool.poetry.dev-dependencies]
 ipykernel = "^6.15.1"
