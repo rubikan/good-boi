@@ -1,7 +1,7 @@
 import random
 import requests
 
-from util import const, text
+from util import const
 from bs4 import BeautifulSoup
 from discord.ext import commands
 
@@ -35,11 +35,11 @@ class Explosm(commands.Cog):
 
     @commands.command(aliases=["c&h", "cah"])
     async def explosm(self, ctx):
-        waiting_msg = await ctx.send(text.WAIT)
-        random_page = self.get_random_page()
-        comic_url = self.extract_comic_url(random_page)
-        await ctx.send(comic_url)
-        await waiting_msg.delete()
+        msg = await ctx.send("Getting a random explosm comic")
+        async with ctx.typing():
+            random_page = self.get_random_page()
+            comic_url = self.extract_comic_url(random_page)
+            await msg.edit(comic_url)
 
 
 async def setup(bot):

@@ -2,7 +2,11 @@ import asyncio
 import discord
 
 from discord.ext import commands
-from util import text, ytdlp
+from util import ytdlp
+
+VOICE_CONNECTION_TIMEOUT = "I could not connect to that channel."
+VOICE_NOT_CONNECTED = "I am not connected to a voice channel."
+VOICE_NOT_PLAYING = "I am currently playing nothing."
 
 
 class YoutubePlayer:
@@ -59,12 +63,12 @@ class Music(commands.Cog):
             try:
                 await client.move_to(channel)
             except asyncio.TimeoutError:
-                await ctx.send(text.VOICE_CONNECTION_TIMEOUT)
+                await ctx.send(VOICE_CONNECTION_TIMEOUT)
         else:
             try:
                 await channel.connect()
             except asyncio.TimeoutError:
-                await ctx.send(text.VOICE_CONNECTION_TIMEOUT)
+                await ctx.send(VOICE_CONNECTION_TIMEOUT)
         await channel.connect()
 
     @commands.command()
@@ -73,7 +77,7 @@ class Music(commands.Cog):
 
         client = ctx.voice_client
         if not client or not client.is_connected():
-            await ctx.send(text.VOICE_NOT_CONNECTED)
+            await ctx.send(VOICE_NOT_CONNECTED)
 
         player = self.get_player(ctx)
         source = await ytdlp.YTDLSource.create_source(
@@ -85,25 +89,25 @@ class Music(commands.Cog):
     async def pause(self, ctx):
         client = ctx.voice_client
         if not client or not client.is_connected():
-            await ctx.send(text.VOICE_NOT_CONNECTED)
+            await ctx.send(VOICE_NOT_CONNECTED)
         if not client.is_playing():
-            await ctx.send(text.VOICE_NOT_PLAYING)
+            await ctx.send(VOICE_NOT_PLAYING)
         if client.is_paused():
             return
 
         client.pause()
-        await ctx.send(text.VOICE_PAUSED)
+        await ctx.send("⏸️ Paused ⏸️")
 
     @commands.command()
     async def resume(self, ctx):
         client = ctx.voice_client
         if not client or not client.is_connected():
-            await ctx.send(text.VOICE_NOT_CONNECTED)
+            await ctx.send(VOICE_NOT_CONNECTED)
         if not client.is_paused():
             return
 
         client.resume()
-        await ctx.send(text.VOICE_RESUMED)
+        await ctx.send("⏯️ Resuming ⏯️")
 
 
 async def setup(bot):

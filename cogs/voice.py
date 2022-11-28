@@ -1,7 +1,9 @@
 import discord
 
 from discord.ext import commands
-from util import const, data, text
+from util import const, data
+
+VOICE_NOT_CONNECTED = "I am not connected to a voice channel."
 
 
 class Voice(commands.Cog):
@@ -13,7 +15,7 @@ class Voice(commands.Cog):
         server = ctx.message.guild
         voice_channel = server.voice_client
         if voice_channel is None:
-            await ctx.send(text.VOICE_NOT_CONNECTED)
+            await ctx.send(VOICE_NOT_CONNECTED)
         else:
             voice_channel.play(
                 discord.FFmpegPCMAudio(executable="ffmpeg", source=file_path)

@@ -2,9 +2,7 @@ import discord
 import json
 import logging
 import os
-import sys
 
-from util import text
 from discord.ext import commands
 
 _log = logging.getLogger(__name__)
@@ -60,7 +58,7 @@ class GoodBoiBot(commands.Bot):
                 guild = self.get_guild(guildId)
                 channelId = int(announce_guild["CHANNEL_ID"])
                 channel = guild.get_channel(channelId)
-                await channel.send(text.ANNOUNCE)
+                await channel.send("✨ I AM BACK WITH NEW FEATURES BABY ✨")
 
 
 goodboi = GoodBoiBot()
