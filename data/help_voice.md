@@ -11,6 +11,9 @@ General:
 Music:
 * 
 
+TTS:
+* tts <text>                - Plays the given text as tts
+
 Static Clips:
 * fuckin | fockin           - Plays the ProZD "THEY FUCKIN" audioclip
 ```
