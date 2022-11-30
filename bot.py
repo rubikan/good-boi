@@ -13,7 +13,6 @@ EXTENSIONS = [
     "cogs.image_generator",
     "cogs.insult",
     "cogs.reddit",
-    "cogs.voice_music",
     "cogs.voice",
     "cogs.xkcd",
 ]
