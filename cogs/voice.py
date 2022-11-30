@@ -174,8 +174,15 @@ class Music(commands.Cog):
 
     @commands.command()
     async def tts(self, ctx):
-        # TODO IMPLEMENT
-        await ctx.send("Not implemented exception lol")
+        return await ctx.send("Not implemented exception lol")
+        client = ctx.voice_client
+        resume = False
+        if client.is_playing():
+            client.pause()
+            resume = True
+        # TODO implement
+        if resume:
+            client.resume()
 
     # STATIC FILE COMMANDS
 
