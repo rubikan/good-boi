@@ -39,6 +39,7 @@ class GoodBoiBot(commands.Bot):
             intents=self.intents,
             help_command=None,
         )
+        discord.opus.load_opus()
 
     async def setup_hook(self) -> None:
         for extension in EXTENSIONS:
