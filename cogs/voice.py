@@ -8,6 +8,7 @@ from util import const, data, ytdlp
 VOICE_CONNECTION_TIMEOUT = "I could not connect to that channel."
 VOICE_NOT_CONNECTED = "I am not connected to a voice channel."
 VOICE_NOT_PLAYING = "I am currently playing nothing."
+VOICE_NOT_PAUSED = "There is nothing paused currently."
 VOICE_ERROR = "There was an error 😔"
 
 # 5 Minutes
@@ -70,7 +71,7 @@ class YoutubePlayer:
             self.current = None
 
     def destroy(self, guild):
-        return self.bot.loop.create_task(self._cog.cleanup(guild))
+        return self.bot.loop.create_task(self.cog.cleanup(guild))
 
 
 class Music(commands.Cog):
@@ -104,6 +105,7 @@ class Music(commands.Cog):
         aliases=["connect"],
     )
     async def join(self, ctx, channel: discord.VoiceChannel = None):
+        await ctx.message.delete()
         if channel is None:
             channel = ctx.author.voice.channel
 
@@ -125,6 +127,7 @@ class Music(commands.Cog):
         aliases=["disconnect"],
     )
     async def leave(self, ctx):
+        await ctx.message.delete()
         client = ctx.voice_client
         if not client or not client.is_connected():
             return await ctx.send(VOICE_NOT_CONNECTED)
@@ -134,25 +137,27 @@ class Music(commands.Cog):
 
     @commands.command()
     async def play(self, ctx, *, query: str):
-        await ctx.trigger_typing()
-
+        await ctx.message.delete()
         client = ctx.voice_client
         if not client or not client.is_connected():
             await ctx.send(VOICE_NOT_CONNECTED)
 
         player = self.get_player(ctx)
-        source = await ytdlp.YTDLSource.create_source(
+        source = await ytdlp.YoutubeSource.create_source(
             ctx, query, loop=self.bot.loop, download=False
         )
         await player.queue.put(source)
 
     @commands.command()
     async def pause(self, ctx):
+        await ctx.message.delete()
         client = ctx.voice_client
         if not client or not client.is_connected():
             await ctx.send(VOICE_NOT_CONNECTED)
+            return
         if not client.is_playing():
             await ctx.send(VOICE_NOT_PLAYING)
+            return
         if client.is_paused():
             return
 
@@ -161,19 +166,27 @@ class Music(commands.Cog):
 
     @commands.command()
     async def resume(self, ctx):
+        await ctx.message.delete()
         client = ctx.voice_client
         if not client or not client.is_connected():
             await ctx.send(VOICE_NOT_CONNECTED)
         if not client.is_paused():
+            await ctx.send(VOICE_NOT_PAUSED)
             return
 
         client.resume()
         await ctx.send("⏯️ Resuming ⏯️")
 
+    @commands.command()
+    async def queue(self, ctx):
+        await ctx.message.delete()
+        return await ctx.send("Not implemented exception lol")
+
     # OTHER COMMANDS
 
     @commands.command()
     async def tts(self, ctx):
+        await ctx.message.delete()
         return await ctx.send("Not implemented exception lol")
         client = ctx.voice_client
         resume = False
@@ -192,6 +205,8 @@ class Music(commands.Cog):
         if client.is_playing():
             client.pause()
             resume = True
+        # TODO TypeError: object NoneType can't be used in 'await' expression
+        # Maybe we still need the duration of the mp3 played, since we can't await client.play
         await client.play(
             discord.FFmpegPCMAudio(executable="ffmpeg", source=audio_path)
         )
@@ -200,6 +215,7 @@ class Music(commands.Cog):
 
     @commands.command(aliases=["fockin"])
     async def fuckin(self, ctx):
+        await ctx.message.delete()
         await self.play_static_file(ctx, data.get_audio_path(const.THEY_FOCKIN))
 
 
