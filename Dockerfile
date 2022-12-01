@@ -1,8 +1,8 @@
 FROM python:3.11-alpine
 
 RUN apk update && \
-    apk add --virtual .voice-build-deps build-base libc-dev libffi-dev libsodium-dev && \
-    apk add gcc bash ffmpeg libffi libsodium opus-dev --no-cache && \
+    apk add --virtual .voice-build-deps build-base libffi-dev libsodium-dev && \
+    apk add gcc bash ffmpeg libffi libsodium libc-dev opus-dev --no-cache && \
     python -m pip install --upgrade pip && \
     pip install poetry && \
     poetry config virtualenvs.create false && \
