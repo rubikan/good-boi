@@ -170,12 +170,26 @@ class Music(commands.Cog):
         client = ctx.voice_client
         if not client or not client.is_connected():
             await ctx.send(VOICE_NOT_CONNECTED)
+            return
         if not client.is_paused():
             await ctx.send(VOICE_NOT_PAUSED)
             return
 
         client.resume()
         await ctx.send("⏯️ Resuming ⏯️")
+
+    @commands.command()
+    async def skip(self, ctx):
+        await ctx.message.delete()
+        client = ctx.voice_client
+        if not client or not client.is_connected():
+            await ctx.send(VOICE_NOT_CONNECTED)
+            return
+        if not client.is_playing():
+            await ctx.send(VOICE_NOT_PLAYING)
+            return
+
+        client.stop()
 
     @commands.command()
     async def queue(self, ctx):
