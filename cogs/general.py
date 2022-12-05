@@ -11,9 +11,11 @@ class General(commands.Cog):
     @commands.command()
     async def help(self, ctx, argument=None):
         if argument == None:
-            await ctx.send(data.read_string("help.md"))
+            await ctx.send(data.read_string("help_general_1.md"))
+            await ctx.send(data.read_string("help_general_2.md"))
         elif argument.lower() == "text":
-            await ctx.send(data.read_string("help.md"))
+            await ctx.send(data.read_string("help_general_1.md"))
+            await ctx.send(data.read_string("help_general_2.md"))
         elif argument.lower() == "voice":
             await ctx.send(data.read_string("help_voice.md"))
 
