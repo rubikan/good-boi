@@ -1,7 +1,7 @@
 version: '3.4'
 
 services:
-  good-boi-bot:
+  bot:
     image: good-boi
     restart: unless-stopped
     build:
