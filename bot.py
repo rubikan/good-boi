@@ -4,6 +4,7 @@ import logging
 import os
 
 from discord.ext import commands
+from util import const
 
 _log = logging.getLogger(__name__)
 
@@ -57,7 +58,7 @@ class GoodBoiBot(commands.Bot):
                 guild = self.get_guild(guildId)
                 channelId = int(announce_guild["CHANNEL_ID"])
                 channel = guild.get_channel(channelId)
-                await channel.send("✨ I AM BACK WITH NEW FEATURES BABY ✨")
+                await channel.send(const.START_MESSAGE)
 
 
 goodboi = GoodBoiBot()

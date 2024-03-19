@@ -1,6 +1,7 @@
 # Global
 EMBED_COLOR = 0xFCDC89
 REQUEST_HEADERS = {"User-agent": "Good Boi 1.0"}
+START_MESSAGE = "https://tenor.com/view/sleepy-dog-mike-sleepy-puppy-cute-gif-16802724"
 # Explosm
 EXPLOSM_URL = "https://explosm.net"
 EXPLOSM_LATEST = EXPLOSM_URL + "/comics/latest"
