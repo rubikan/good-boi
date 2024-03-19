@@ -5,8 +5,8 @@ START_MESSAGE = "https://tenor.com/view/sleepy-dog-mike-sleepy-puppy-cute-gif-16
 # Explosm
 EXPLOSM_URL = "https://explosm.net"
 EXPLOSM_LATEST = EXPLOSM_URL + "/comics/latest"
-EXPLOSM_SELECT_CONTAINER = "ComicSelector__Container-sc-tx5aab-0"
-EXPLOSM_COMIC_CONTAINER = "MainComic__ComicImage-sc-ndbx87-2"
+EXPLOSM_SELECT_CONTAINER = "ComicSelector__Container-sc-tx5aab-0 eudaLQ"
+EXPLOSM_COMIC_CONTAINER = "MainComic__ComicImage-sc-ndbx87-2 lmqaxm"
 EXPLOSM_RANDOM_UPPER_LIMIT = 100
 # Image Generator
 OJ_MODEL = "prompthero/openjourney:ad59ca21177f9e217b9075e7300cf6e14f7e5b4505b87b9689dbd866e9768969"
