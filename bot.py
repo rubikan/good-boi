@@ -5,6 +5,7 @@ import os
 
 from discord.ext import commands
 from util import const
+from util.config import load_config
 
 _log = logging.getLogger(__name__)
 
@@ -17,14 +18,6 @@ EXTENSIONS = [
     "cogs.xkcd",
     "cogs.ai",
 ]
-
-
-def load_config():
-    with open("data/config.json", "r") as f:
-        config = json.load(f)
-        # the replicate API wants the API token as an environment variable
-        os.environ["REPLICATE_API_TOKEN"] = config["REPLICATE_TOKEN"]
-        return config
 
 
 class GoodBoiBot(commands.Bot):

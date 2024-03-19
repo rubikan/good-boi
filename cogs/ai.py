@@ -2,15 +2,17 @@ import os
 from openai import OpenAI
 from discord.ext import commands
 
+from bot import GoodBoiBot
+
 
 class AI(commands.Cog):
     client: OpenAI
 
-    def __init__(self, bot):
+    def __init__(self, bot: GoodBoiBot):
         self.bot = bot
         self.client = OpenAI(
-            base_url=os.environ.get("OPENAI_BASE_URL"),
-            api_key=os.environ.get("OPENAI_API_KEY"),
+            base_url=bot.config.openai.baseUrl,
+            api_key=bot.config.openai.apiKey,
         )
 
     @commands.command()
@@ -18,9 +20,9 @@ class AI(commands.Cog):
         """Chat with the AI"""
         async with ctx.typing():
             result = self.client.chat.completions.create(
-                model=os.environ.get("OPENAI_MODEL"),
+                model=self.bot.config.openai.model,
                 messages=[
-                    {"role": "system", "content": "You are a helpful assistant."},
+                    {"role": "system", "content": self.bot.config.openai.chatPrompt},
                     {"role": "user", "content": arg},
                 ],
             )
