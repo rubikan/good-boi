@@ -1,8 +1,4 @@
 ```
-###########################
-# TEXT CHANNEL COMMANDS 1 #
-###########################
-
 General:
 * help                      - This command
 * help text                 - This command

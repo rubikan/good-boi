@@ -1,8 +1,4 @@
 ```
-###########################
-# TEXT CHANNEL COMMANDS 2 #
-###########################
-
 Reddit:
 * animalsbeingderps | abd   - Posts a random image from the AnimalsBeingDerps subreddit
 * dallemini | dem           - Posts a random image from the dallemini subreddit
