@@ -9,8 +9,8 @@ EXPLOSM_SELECT_CONTAINER = "ComicSelector__Container-sc-tx5aab-0"
 EXPLOSM_COMIC_CONTAINER = "MainComic__ComicImage-sc-ndbx87-2"
 EXPLOSM_RANDOM_UPPER_LIMIT = 100
 # Image Generator
-OJ_MODEL = "prompthero/openjourney"
-PKM_MODEL = "lambdal/text-to-pokemon"
+OJ_MODEL = "prompthero/openjourney:ad59ca21177f9e217b9075e7300cf6e14f7e5b4505b87b9689dbd866e9768969"
+PKM_MODEL = "lambdal/text-to-pokemon:ff6cc781634191dd3c49097a615d2fc01b0a8aae31c448e55039a04dcbf36bba"
 # Insult
 API_URLS = {
     "https://evilinsult.com/generate_insult.php?lang=en&type=text",

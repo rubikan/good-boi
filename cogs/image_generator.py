@@ -13,8 +13,7 @@ class ImageGenerator(commands.Cog):
     async def generate(ctx, arg, model):
         msg = await ctx.send(f"Generating image for prompt `{arg}`...")
         async with ctx.typing():
-            model = replicate.models.get(model)
-            images = model.predict(prompt=arg)
+            images = replicate.run(model, input={"prompt": arg})
             image = images[0]
 
             embed = discord.Embed(title=arg, color=const.EMBED_COLOR)
