@@ -39,7 +39,6 @@ class GoodBoiBot(commands.Bot):
             intents=self.intents,
             help_command=None,
         )
-        discord.opus.load_opus("/usr/lib/libopus.so")
 
     async def setup_hook(self) -> None:
         for extension in EXTENSIONS:
