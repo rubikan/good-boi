@@ -2,13 +2,11 @@ import os
 from openai import OpenAI
 from discord.ext import commands
 
-from bot import GoodBoiBot
-
 
 class AI(commands.Cog):
     client: OpenAI
 
-    def __init__(self, bot: GoodBoiBot):
+    def __init__(self, bot):
         self.bot = bot
         self.client = OpenAI(
             base_url=bot.config.openai.baseUrl,
@@ -16,8 +14,7 @@ class AI(commands.Cog):
         )
 
     @commands.command()
-    async def chat(self, ctx, arg):
-        """Chat with the AI"""
+    async def chat(self, ctx, *, arg):
         async with ctx.typing():
             result = self.client.chat.completions.create(
                 model=self.bot.config.openai.model,
@@ -28,3 +25,7 @@ class AI(commands.Cog):
             )
             answer = result.choices[0].message.content
             await ctx.send(answer)
+
+
+async def setup(bot):
+    await bot.add_cog(AI(bot))

@@ -37,7 +37,7 @@ class GoodBoiBot(commands.Bot):
     async def setup_hook(self) -> None:
         for extension in EXTENSIONS:
             try:
-                _log.info(f"Loading extension {extension}")
+                print(f"Loading extension {extension}")
                 await self.load_extension(extension)
             except Exception as e:
                 _log.info(f"Failed to load extension {extension}. Reason: ", e)
@@ -45,14 +45,13 @@ class GoodBoiBot(commands.Bot):
 
     async def on_ready(self):
         await self.change_presence(activity=discord.Game(name="boi help"))
-        if "ANNOUNCE_GUILDS" in self.config:
-            for announce_guild in self.config["ANNOUNCE_GUILDS"]:
-                guildId = int(announce_guild["GUILD_ID"])
-                guild = self.get_guild(guildId)
-                channelId = int(announce_guild["CHANNEL_ID"])
-                channel = guild.get_channel(channelId)
-                await channel.send(const.START_MESSAGE)
+        for announce_guild in self.config.discord.announceGuilds:
+            guildId = int(announce_guild.guildId)
+            guild = self.get_guild(guildId)
+            channelId = int(announce_guild.channelId)
+            channel = guild.get_channel(channelId)
+            await channel.send(const.START_MESSAGE)
 
 
 goodboi = GoodBoiBot()
-goodboi.run(goodboi.config["DISCORD_TOKEN"])
+goodboi.run(goodboi.config.discord.token)

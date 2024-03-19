@@ -12,7 +12,7 @@
       }
     ]
   },
-  "replicateToken": {
+  "replicate": {
     "token": "[INSERT TOKEN HERE]"
   },
   "openai": {
