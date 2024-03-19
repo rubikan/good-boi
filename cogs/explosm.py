@@ -16,7 +16,9 @@ class Explosm(commands.Cog):
         soup = BeautifulSoup(page.content, "html.parser")
         rand_int = random.randint(1, const.EXPLOSM_RANDOM_UPPER_LIMIT)
         for i in range(rand_int):
-            selectContainerDiv = soup.select("div", class_=const.EXPLOSM_SELECT_CONTAINER)[1]
+            selectContainerDiv = soup.select(
+                "div", class_=const.EXPLOSM_SELECT_CONTAINER
+            )[1]
             random_url = selectContainerDiv.select("div > a")[1]["href"]
             page = requests.get(
                 const.EXPLOSM_URL + random_url, headers=const.REQUEST_HEADERS
