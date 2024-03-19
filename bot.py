@@ -37,11 +37,10 @@ class GoodBoiBot(commands.Bot):
     async def setup_hook(self) -> None:
         for extension in EXTENSIONS:
             try:
-                print(f"Loading extension {extension}")
+                _log.info(f"Loading extension {extension}")
                 await self.load_extension(extension)
             except Exception as e:
-                _log.info(f"Failed to load extension {extension}. Reason: ", e)
-                print(e)
+                _log.error(f"Failed to load extension {extension}. Reason: ", e)
 
     async def on_ready(self):
         await self.change_presence(activity=discord.Game(name="boi help"))
@@ -53,5 +52,6 @@ class GoodBoiBot(commands.Bot):
             await channel.send(const.START_MESSAGE)
 
 
+logging.basicConfig(level=logging.INFO)
 goodboi = GoodBoiBot()
 goodboi.run(goodboi.config.discord.token)
