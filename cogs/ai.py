@@ -30,7 +30,7 @@ class AI(commands.Cog):
                 content = chunk.choices[0].delta.content
                 if content:
                     answer += content
-                    msg.edit(content=answer)
+                    await msg.edit(content=answer)
 
 
 async def setup(bot):

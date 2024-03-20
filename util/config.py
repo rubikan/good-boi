@@ -1,39 +1,39 @@
 from dataclasses import dataclass
-from dataclasses_json import dataclass_json
+from dataclasses_json import dataclass_json, LetterCase
 from typing import List
 import os
 
 
-@dataclass_json
+@dataclass_json(letter_case=LetterCase.CAMEL)
 @dataclass
 class GuildAndChannel:
-    guildId: str
-    channelId: str
+    guild_id: str
+    channel_id: str
 
 
-@dataclass_json
+@dataclass_json(letter_case=LetterCase.CAMEL)
 @dataclass
 class DiscordConfig:
     token: str
-    announceGuilds: List[GuildAndChannel]
+    announce_guilds: List[GuildAndChannel]
 
 
-@dataclass_json
+@dataclass_json(letter_case=LetterCase.CAMEL)
 @dataclass
 class OpenAIConfig:
-    baseUrl: str
-    apiKey: str
+    base_url: str
+    api_key: str
     model: str
-    chatPrompt: str
+    chat_prompt: str
 
 
-@dataclass_json
+@dataclass_json(letter_case=LetterCase.CAMEL)
 @dataclass
 class ReplicateConfig:
     token: str
 
 
-@dataclass_json
+@dataclass_json(letter_case=LetterCase.CAMEL)
 @dataclass
 class GoodBoiConfig:
     discord: DiscordConfig

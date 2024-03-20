@@ -1,7 +1,5 @@
 import discord
-import json
 import logging
-import os
 
 from discord.ext import commands
 from util import const
@@ -44,10 +42,10 @@ class GoodBoiBot(commands.Bot):
 
     async def on_ready(self):
         await self.change_presence(activity=discord.Game(name="boi help"))
-        for announce_guild in self.config.discord.announceGuilds:
-            guildId = int(announce_guild.guildId)
+        for announce_guild in self.config.discord.announce_guilds:
+            guildId = int(announce_guild.guild_id)
             guild = self.get_guild(guildId)
-            channelId = int(announce_guild.channelId)
+            channelId = int(announce_guild.channel_id)
             channel = guild.get_channel(channelId)
             await channel.send(const.START_MESSAGE)
 
