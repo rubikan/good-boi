@@ -1,5 +1,5 @@
-import os
 from openai import OpenAI
+from discord.ext.commands import Context
 from discord.ext import commands
 
 
@@ -14,7 +14,8 @@ class AI(commands.Cog):
         )
 
     @commands.command()
-    async def chat(self, ctx, *, arg):
+    async def chat(self, ctx: Context, *, arg: str):
+        msg = await ctx.send("Generating answer...")
         async with ctx.typing():
             result = self.client.chat.completions.create(
                 model=self.bot.config.openai.model,
@@ -22,9 +23,14 @@ class AI(commands.Cog):
                     {"role": "system", "content": self.bot.config.openai.chatPrompt},
                     {"role": "user", "content": arg},
                 ],
+                stream=True,
             )
-            answer = result.choices[0].message.content
-            await ctx.send(answer)
+            answer = ""
+            for chunk in result:
+                content = chunk.choices[0].delta.content
+                if content:
+                    answer += content
+                    msg.edit(content=answer)
 
 
 async def setup(bot):
