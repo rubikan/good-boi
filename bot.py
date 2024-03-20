@@ -50,6 +50,10 @@ class GoodBoiBot(commands.Bot):
             await channel.send(const.START_MESSAGE)
 
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s %(levelname)s %(module)s  %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+)
 goodboi = GoodBoiBot()
 goodboi.run(goodboi.config.discord.token)
