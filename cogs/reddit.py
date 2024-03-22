@@ -80,73 +80,73 @@ class Reddit(commands.Cog):
 
         return embed
 
-    @commands.command(aliases=["abd"])
+    @commands.command(aliases=["abd"], help="Get a random /r/AnimalsBeingDerps post")
     async def animalsbeingderps(self, ctx):
         post_json = self.get_from_reddit("AnimalsBeingDerps", "random", "1", "all")
         embed = self.create_image_embed(post_json)
         await ctx.send(embed=embed)
 
-    @commands.command(aliases=["dj"])
+    @commands.command(aliases=["dj"], help="Get a random /r/dadjokes post")
     async def dadjokes(self, ctx):
         post_json = self.get_from_reddit("dadjokes", "random", "1", "all")
         embed = self.create_text_embed(post_json)
         await ctx.send(embed=embed)
 
-    @commands.command(aliases=["dem"])
+    @commands.command(aliases=["dem"], help="Get a random /r/dallemini post")
     async def dallemini(self, ctx):
         post_json = self.get_from_reddit("dallemini", "random", "1", "all")
         embed = self.create_image_embed(post_json)
         await ctx.send(embed=embed)
 
-    @commands.command(aliases=["dv"])
+    @commands.command(aliases=["dv"], help="Get a random /r/disneyvacation post")
     async def disneyvacation(self, ctx):
         post_json = self.get_from_reddit("disneyvacation", "random", "1", "all")
         embed = self.create_image_embed(post_json)
         await ctx.send(embed=embed)
 
-    @commands.command(aliases=["ep"])
+    @commands.command(aliases=["ep"], help="Get a random /r/earthporn post")
     async def earthporn(self, ctx):
         post_json = self.get_from_reddit("earthporn", "random", "1", "all")
         embed = self.create_image_embed(post_json)
         await ctx.send(embed=embed)
 
-    @commands.command(aliases=["jk"])
+    @commands.command(aliases=["jk"], help="Get a random /r/jokes post")
     async def jokes(self, ctx):
         post_json = self.get_from_reddit("jokes", "random", "1", "all")
         embed = self.create_text_embed(post_json)
         await ctx.send(embed=embed)
 
-    @commands.command(aliases=["irl"])
+    @commands.command(aliases=["irl"], help="Get a random /r/me_irl post")
     async def me_irl(self, ctx):
         post_json = self.get_from_reddit("me_irl", "random", "1", "all")
         embed = self.create_image_embed(post_json)
         await ctx.send(embed=embed)
 
-    @commands.command(aliases=["ncp"])
+    @commands.command(aliases=["ncp"], help="Get a random /r/nocontextpics post")
     async def nocontextpics(self, ctx):
         post_json = self.get_from_reddit("nocontextpics", "random", "1", "all")
         embed = self.create_image_embed(post_json)
         await ctx.send(embed=embed)
 
-    @commands.command(aliases=["otg"])
+    @commands.command(aliases=["otg"], help="Get a random /r/onetruegod post")
     async def onetruegod(self, ctx):
         post_json = self.get_from_reddit("onetruegod", "random", "1", "all")
         embed = self.create_image_embed(post_json)
         await ctx.send(embed=embed)
 
-    @commands.command(aliases=["ph"])
+    @commands.command(aliases=["ph"], help="Get a random /r/ProgrammerHumor post")
     async def programmerhumor(self, ctx):
         post_json = self.get_from_reddit("ProgrammerHumor", "random", "1", "all")
         embed = self.create_image_embed(post_json)
         await ctx.send(embed=embed)
 
-    @commands.command(aliases=["sfp"])
+    @commands.command(aliases=["sfp"], help="Get a random /r/shittyfoodporn post")
     async def shittyfoodporn(self, ctx):
         post_json = self.get_from_reddit("shittyfoodporn", "random", "1", "all")
         embed = self.create_image_embed(post_json)
         await ctx.send(embed=embed)
 
-    @commands.command(aliases=["wwp"])
+    @commands.command(aliases=["wwp"], help="Get a random /r/WeWantPlates post")
     async def wewantplates(self, ctx):
         post_json = self.get_from_reddit("WeWantPlates", "random", "1", "all")
         embed = self.create_image_embed(post_json)

@@ -30,7 +30,7 @@ class XKCD(commands.Cog):
         rand_int = random.randint(1, self.get_newest_id(self))
         return const.XKCD_URL + str(rand_int)
 
-    @commands.command()
+    @commands.command(help="Get the newest XKCD comic or a random one")
     async def xkcd(self, ctx, argument=None):
         if argument == None:
             await ctx.send(self.get_newest_link())

@@ -1,4 +1,6 @@
+from typing import Optional
 from util import data, discord_utils
+from discord.ext.commands import Context
 
 from discord.ext import commands
 from zalgo_text import zalgo
@@ -9,13 +11,19 @@ class General(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    async def help(self, ctx):
-        await ctx.send(data.read_string("help_general_1.md"))
-        await ctx.send(data.read_string("help_general_2.md"))
+    async def help(self, ctx: Context):
+        help_message = ""
+        for cog_name, cog in self.bot.cogs.items():
+            help_message += f"**{cog_name}:**\n"
+            for command in cog.get_commands():
+                names = ", ".join([command.name, *command.aliases])
 
-        await ctx.message.delete()
+                if command.help:
+                    help_message += f"**{names}** - {command.help}\n"
+            help_message += "\n"
+        await ctx.send(help_message)
 
-    @commands.command()
+    @commands.command(help="Mock the given text")
     async def mock(self, ctx, *, arg):
         mocked = ""
         for idx in range(len(arg)):
@@ -26,23 +34,23 @@ class General(commands.Cog):
         await ctx.send(mocked)
         await ctx.message.delete()
 
-    @commands.command()
+    @commands.command(help="Ping the bot")
     async def ping(self, ctx):
         await ctx.send("pong! 🏓")
 
-    @commands.command()
+    @commands.command(help="Repeat the given message")
     async def say(self, ctx):
-        argumentMessage = discord_utils.extract_clean_message(ctx)
+        arg_message = discord_utils.extract_clean_message(ctx)
         if ctx.message.reference is not None:
             referencedMessage = await ctx.channel.fetch_message(
                 ctx.message.reference.message_id
             )
-            await referencedMessage.reply(argumentMessage)
+            await referencedMessage.reply(arg_message)
         else:
-            await ctx.send(argumentMessage)
+            await ctx.send(arg_message)
         await ctx.message.delete()
 
-    @commands.command()
+    @commands.command(help="Zalgofy the given message")
     async def zalgo(self, ctx):
         zalgoMessage = zalgo.zalgo().zalgofy(discord_utils.extract_clean_message(ctx))
         if ctx.message.reference is not None:

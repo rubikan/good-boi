@@ -1,10 +1,9 @@
 import discord
-import json
 import logging
-import os
 
 from discord.ext import commands
 from util import const
+from util.config import load_config
 
 _log = logging.getLogger(__name__)
 
@@ -15,15 +14,8 @@ EXTENSIONS = [
     "cogs.insult",
     "cogs.reddit",
     "cogs.xkcd",
+    "cogs.ai",
 ]
-
-
-def load_config():
-    with open("data/config.json", "r") as f:
-        config = json.load(f)
-        # the replicate API wants the API token as an environment variable
-        os.environ["REPLICATE_API_TOKEN"] = config["REPLICATE_TOKEN"]
-        return config
 
 
 class GoodBoiBot(commands.Bot):
@@ -46,19 +38,22 @@ class GoodBoiBot(commands.Bot):
                 _log.info(f"Loading extension {extension}")
                 await self.load_extension(extension)
             except Exception as e:
-                _log.info(f"Failed to load extension {extension}. Reason: ", e)
-                print(e)
+                _log.error(f"Failed to load extension {extension}. Reason: ", e)
 
     async def on_ready(self):
         await self.change_presence(activity=discord.Game(name="boi help"))
-        if "ANNOUNCE_GUILDS" in self.config:
-            for announce_guild in self.config["ANNOUNCE_GUILDS"]:
-                guildId = int(announce_guild["GUILD_ID"])
-                guild = self.get_guild(guildId)
-                channelId = int(announce_guild["CHANNEL_ID"])
-                channel = guild.get_channel(channelId)
-                await channel.send(const.START_MESSAGE)
+        for announce_guild in self.config.discord.announce_guilds:
+            guildId = int(announce_guild.guild_id)
+            guild = self.get_guild(guildId)
+            channelId = int(announce_guild.channel_id)
+            channel = guild.get_channel(channelId)
+            await channel.send(const.START_MESSAGE)
 
 
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s %(levelname)s %(module)s  %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+)
 goodboi = GoodBoiBot()
-goodboi.run(goodboi.config["DISCORD_TOKEN"])
+goodboi.run(goodboi.config.discord.token)
