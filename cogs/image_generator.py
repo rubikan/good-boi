@@ -69,19 +69,19 @@ class ImageGenerator(commands.Cog):
                     content=f"Failed to generate image for prompt `{prompt}`. Reason: `{e}`"
                 )
 
-    @commands.command(aliases=["oj"])
+    @commands.command(aliases=["oj"], help="Generate an open journey image")
     async def openjourney(self, ctx, *, arg):
         await self.generate(ctx, arg, const.OJ_MODEL, width=1024, height=768)
 
-    @commands.command(aliases=["pkm"])
+    @commands.command(aliases=["pkm"], help="Generate a pokemon image")
     async def pokemon(self, ctx, *, arg):
         await self.generate(ctx, arg, const.PKM_MODEL)
 
-    @commands.command(aliases=["sd"])
+    @commands.command(aliases=["sd"], help="Generate a stable diffusion image")
     async def stable_diffusion(self, ctx, *, arg):
         await self.generate(ctx, arg, const.SD_MODEL)
 
-    @commands.command(aliases=["pg"])
+    @commands.command(aliases=["pg"], help="Generate a playground image")
     async def playground(self, ctx, *, arg):
         await self.generate(ctx, arg, const.PG_MODEL, scheduler="DPMSolver++")
 

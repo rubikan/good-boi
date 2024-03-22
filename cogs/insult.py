@@ -22,12 +22,12 @@ class Insult(commands.Cog):
 
         return requests.get(url, headers=const.REQUEST_HEADERS).text
 
-    @commands.command()
+    @commands.command(help="Insult yourself")
     async def insultme(self, ctx):
         await ctx.send(f"{ctx.author.mention} {self.get_random_insult()}")
         await ctx.message.delete()
 
-    @commands.command()
+    @commands.command(help="Insult someone else")
     async def insult(self, ctx, *, member: discord.Member):
         await ctx.send(f"{member.mention} {self.get_random_insult()}")
         await ctx.message.delete()

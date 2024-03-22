@@ -33,7 +33,9 @@ class Explosm(commands.Cog):
         imgTag = comicContainerDiv.findChild("img")
         return imgTag["src"]
 
-    @commands.command(aliases=["c&h", "cah"])
+    @commands.command(
+        aliases=["c&h", "cah"], help="Get a random Cyanide and Happiness comic"
+    )
     async def explosm(self, ctx):
         msg = await ctx.send("Getting a random explosm comic")
         async with ctx.typing():

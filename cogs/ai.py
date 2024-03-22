@@ -45,7 +45,7 @@ class AI(commands.Cog):
             api_key=bot.config.openai.api_key,
         )
 
-    @commands.command()
+    @commands.command(help="Talk to an AI chatbot")
     async def chat(self, ctx: Context, *, arg: str):
         msg = await ctx.reply("I'm thinking...")
         async with ctx.typing():
