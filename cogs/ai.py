@@ -56,6 +56,8 @@ class AI(commands.Cog):
                     {"role": "user", "content": arg},
                 ],
                 stream=True,
+                temperature=0.7,
+                max_tokens=4000,
             )
             answer = ""
             delta_len = 0
