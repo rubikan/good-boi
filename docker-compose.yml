@@ -13,4 +13,4 @@ services:
     restart: unless-stopped
     build:
       context: ./llm
-      dockerfile: ./llm/Dockerfile
+      dockerfile: ./Dockerfile
