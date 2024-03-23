@@ -1,4 +1,4 @@
-version: '3.4'
+version: "3.4"
 
 services:
   bot:
@@ -7,3 +7,10 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
+
+  llm:
+    image: koboldcpp
+    restart: unless-stopped
+    build:
+      context: ./llm
+      dockerfile: ./llm/Dockerfile
