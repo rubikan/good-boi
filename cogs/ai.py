@@ -1,9 +1,12 @@
 from dataclasses import dataclass
-from openai import OpenAI
+from typing import Generator, List
+import requests
+import json
 from discord.ext.commands import Context
 from discord.ext import commands
 import logging
 from abc import ABC
+from sseclient import SSEClient
 
 EDIT_EVERY_N_CHARS = 20
 LENGTH_THRESHOLD = 1500
@@ -35,37 +38,88 @@ def handle_chunk(message_so_far: str, new_content: str) -> ChunkResult:
         return EditExistingMessage(new_content)
 
 
+request_defaults = {
+    "n": 1,
+    "max_context_length": 4096,
+    "max_length": 512,
+    "rep_pen": 1.1,
+    "temperature": 0.59,
+    "top_p": 1,
+    "top_k": 0,
+    "top_a": 0,
+    "typical": 1,
+    "tfs": 0.87,
+    "rep_pen_range": 1600,
+    "rep_pen_slope": 0.3,
+    "sampler_order": [6, 5, 0, 2, 3, 1, 4],
+    "memory": "",
+    "genkey": "KCPP1388",
+    "min_p": 0,
+    "dynatemp_range": 0,
+    "dynatemp_exponent": 1,
+    "smoothing_factor": 0,
+    "presence_penalty": 0,
+    "logit_bias": {},
+    "quiet": True,
+    "stop_sequence": ["You:", "\nYou ", "\nKoboldAI: "],
+    "use_default_badwordsids": False,
+}
+
+
+class KoboldApi:
+    base_url: str
+    system_prompt: str
+
+    def __init__(self, base_url: str, system_prompt: str):
+        self.base_url = base_url
+        self.system_prompt = system_prompt
+
+    def get_completions(
+        self,
+        prompt: str,
+        temperature=0.59,
+    ) -> Generator[str]:
+        request_body = request_defaults.copy()
+        request_body.update(
+            {
+                "temperature": temperature,
+                "prompt": self.system_prompt.format(prompt=prompt),
+            }
+        )
+        _log.info(f"Request body: {request_body}")
+        response = requests.post(
+            f"{self.base_url}/api/extra/generate/stream", json=request_body, stream=True
+        )
+        client = SSEClient(response)
+        for event in client.events():
+            parsed = json.loads(event.data)
+            yield parsed["token"]
+
+
 class AI(commands.Cog):
-    client: OpenAI
+    client: KoboldApi
 
     def __init__(self, bot):
         self.bot = bot
-        self.client = OpenAI(
-            base_url=bot.config.openai.base_url,
-            api_key=bot.config.openai.api_key,
+        self.client = KoboldApi(
+            bot.config.openai.base_url, bot.config.openai.chat_prompt
         )
 
     @commands.command(help="Talk to an AI chatbot")
     async def chat(self, ctx: Context, *, arg: str):
         msg = await ctx.reply("I'm thinking...")
         async with ctx.typing():
-            result = self.client.chat.completions.create(
-                model=self.bot.config.openai.model,
-                messages=[
-                    {"role": "system", "content": self.bot.config.openai.chat_prompt},
-                    {"role": "user", "content": arg},
-                ],
-                stream=True,
-                temperature=0.7,
-                max_tokens=4000,
-            )
+            result = self.client.get_completions(arg)
             answer = ""
             delta_len = 0
-            for chunk in result:
-                content = chunk.choices[0].delta.content
+            for content in result:
                 if content:
                     action = handle_chunk(message_so_far=answer, new_content=content)
-                    _log.info(f"Action: {action}")
+                    _log.debug(f"Action: {action}")
+
+                    if content.strip() == "You:":
+                        _log.info("Stop sequence detected, stopping chat")
+                        break
 
                     if isinstance(action, EditExistingMessage):
                         answer += action.chunk
