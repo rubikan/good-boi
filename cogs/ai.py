@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-from typing import Generator, List
 import requests
 import json
 from discord.ext.commands import Context
@@ -78,7 +77,7 @@ class KoboldApi:
         self,
         prompt: str,
         temperature=0.59,
-    ) -> Generator[str]:
+    ):
         request_body = request_defaults.copy()
         request_body.update(
             {
