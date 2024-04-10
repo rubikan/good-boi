@@ -37,6 +37,8 @@ def handle_chunk(message_so_far: str, new_content: str) -> ChunkResult:
         return EditExistingMessage(new_content)
 
 
+stop_sequences = ["You:", "\nYou ", "\nKoboldAI: "]
+
 request_defaults = {
     "n": 1,
     "max_context_length": 4096,
@@ -60,7 +62,7 @@ request_defaults = {
     "presence_penalty": 0,
     "logit_bias": {},
     "quiet": True,
-    "stop_sequence": ["You:", "\nYou ", "\nKoboldAI: "],
+    "stop_sequence": stop_sequences,
     "use_default_badwordsids": False,
 }
 
@@ -116,7 +118,7 @@ class AI(commands.Cog):
                     action = handle_chunk(message_so_far=answer, new_content=content)
                     _log.debug(f"Action: {action}")
 
-                    if content.strip() == "You:":
+                    if [seq for seq in stop_sequences if answer.endswith(seq)]:
                         _log.info("Stop sequence detected, stopping chat")
                         break
 
