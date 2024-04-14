@@ -118,10 +118,6 @@ class AI(commands.Cog):
                     action = handle_chunk(message_so_far=answer, new_content=content)
                     _log.debug(f"Action: {action}")
 
-                    if [seq for seq in stop_sequences if answer.endswith(seq)]:
-                        _log.info("Stop sequence detected, stopping chat")
-                        break
-
                     if isinstance(action, EditExistingMessage):
                         answer += action.chunk
                         delta_len += len(action.chunk)
@@ -140,6 +136,13 @@ class AI(commands.Cog):
 
             # if any content was left over
             if delta_len > 0:
+                await msg.edit(content=answer)
+
+            stop_sequence = [seq for seq in stop_sequence if answer.endswith(seq)]
+            if stop_sequence:
+                # pick the longest of the matched stop sequences
+                stop_sequence = max(stop_sequence, key=len)
+                answer = answer[: -len(stop_sequence)]
                 await msg.edit(content=answer)
 
 
