@@ -1,13 +1,12 @@
 import discord
-from discord.ext.commands import Context
 import replicate
 import typing
 import functools
 import logging
 
-from discord.ext import commands
 from util import const
-
+from discord.ext import commands
+from discord.ext.commands import Context
 
 _log = logging.getLogger(__name__)
 

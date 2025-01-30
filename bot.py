@@ -12,6 +12,7 @@ EXTENSIONS = [
     "cogs.general",
     "cogs.image_generator",
     "cogs.insult",
+    "cogs.ollama_text",
     "cogs.reddit",
     "cogs.xkcd",
 ]
