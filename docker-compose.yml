@@ -1,5 +1,3 @@
-version: "3.4"
-
 services:
   bot:
     image: ghcr.io/rubikan/good-boi:latest
@@ -11,3 +9,16 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
+
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+        - 11434:11434
+    volumes:
+        - /var/lib/ollama/data:/root/.ollama
+        - /var/lib/ollama/entrypoint.sh:/entrypoint.sh
+    container_name: ollama
+    pull_policy: always
+    tty: true
+    restart: always
+    entrypoint: ["/usr/bin/bash", "/entrypoint.sh"]
