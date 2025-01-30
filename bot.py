@@ -1,9 +1,9 @@
+import os
 import discord
 import logging
 
 from discord.ext import commands
 from util import const
-from util.config import load_config
 
 _log = logging.getLogger(__name__)
 
@@ -21,7 +21,6 @@ class GoodBoiBot(commands.Bot):
     command_prefix = ["boi ", "Boi "]
     description = "A good boi for your discord server"
     intents = discord.Intents.all()
-    config = load_config()
 
     def __init__(self):
         super().__init__(
@@ -41,11 +40,13 @@ class GoodBoiBot(commands.Bot):
 
     async def on_ready(self):
         await self.change_presence(activity=discord.Game(name="boi help"))
-        for announce_guild in self.config.discord.announce_guilds:
-            guildId = int(announce_guild.guild_id)
-            guild = self.get_guild(guildId)
-            channelId = int(announce_guild.channel_id)
-            channel = guild.get_channel(channelId)
+        announce_guild_data = os.environ["GOODBOI_ANNOUNCE_GUILDS"]
+        for announce_guild in announce_guild_data.split(","):
+            current_guild = announce_guild.split(":")
+            guild_id = int(current_guild[0])
+            guild = self.get_guild(guild_id)
+            channel_id = int(current_guild[1])
+            channel = guild.get_channel(channel_id)
             await channel.send(const.START_MESSAGE)
 
 
@@ -54,5 +55,6 @@ logging.basicConfig(
     format="%(asctime)s %(levelname)s %(module)s  %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S",
 )
+
 goodboi = GoodBoiBot()
-goodboi.run(goodboi.config.discord.token)
+goodboi.run(os.environ["GOODBOI_DISCORD_TOKEN"])

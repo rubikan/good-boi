@@ -2,8 +2,12 @@ version: "3.4"
 
 services:
   bot:
-    image: good-boi
+    image: ghcr.io/rubikan/good-boi:latest
     restart: unless-stopped
+    environment:
+      GOODBOI_DISCORD_TOKEN: [INSERT TOKEN HERE]
+      GOODBOI_ANNOUNCE_GUILDS: [GUILD1]:[CHANNEL1],[GUILD2]:[CHANNEL2]
+      REPLICATE_API_TOKEN: [INSERT TOKEN HERE]
     build:
       context: .
       dockerfile: ./Dockerfile
