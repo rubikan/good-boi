@@ -7,10 +7,3 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
-
-  llm:
-    image: koboldcpp
-    restart: unless-stopped
-    build:
-      context: ./llm
-      dockerfile: ./Dockerfile
