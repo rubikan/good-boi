@@ -1,6 +1,6 @@
 # Prerequisites
 
-* Python 3.12.2
+* Python 3.13.1
 
 # Development installation
 
@@ -15,6 +15,10 @@
 * Install the dependencies
 
 `pip install -r requirements.txt`
+
+* Update dependencies (only in requirements.txt, install separately)
+
+`pur -r requirements.txt`
 
 # Run the bot
 
