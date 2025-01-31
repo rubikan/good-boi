@@ -31,23 +31,12 @@ class OllamaText(commands.Cog):
         msg = await ctx.reply(msg_content)
         async with ctx.typing():
             msg_content = ""
-            async for part in await AsyncClient().chat(
+            async for part in await self.ollama_client.chat(
                 model=const.OLLAMA_TXT_MODEL, messages=[ollama_prompt], stream=True
             ):
                 msg_content += part["message"]["content"]
                 await msg.edit(content=msg_content)
-            # TODO: message cutoff at 1500, begin new message, check why this is slow a.f., deepseek-r1:32b is not the best model either
-
-        response = self.ollama_client.chat(
-            model=const.OLLAMA_TXT_MODEL,
-            messages=[
-                {
-                    "role": "user",
-                    "content": arg,
-                },
-            ],
-        )
-        await ctx.send(response)
+                # TODO: message cutoff at 1500, begin new message, check why this is slow a.f., deepseek-r1:32b is not the best model either
 
 
 async def setup(bot):

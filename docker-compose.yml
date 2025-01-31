@@ -4,6 +4,10 @@ services:
     container_name: good-boi
     restart: unless-stopped
     pull_policy: always
+    depends_on:
+      good-boi-ollama:
+        condition: service_started
+        restart: true
     environment:
       GOODBOI_DISCORD_TOKEN: [INSERT TOKEN HERE]
       GOODBOI_ANNOUNCE_GUILDS: [GUILD1]:[CHANNEL1],[GUILD2]:[CHANNEL2]
