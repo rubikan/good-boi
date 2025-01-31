@@ -1,9 +1,8 @@
-from typing import Optional
-from util import data, discord_utils
+from util import discord_utils
 from discord.ext.commands import Context
 
-from discord.ext import commands
 from zalgo_text import zalgo
+from discord.ext import commands
 
 
 class General(commands.Cog):
