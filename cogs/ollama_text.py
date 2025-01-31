@@ -14,10 +14,10 @@ class OllamaText(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         ollama_url: str
-        if os.environ["GOODBOI_OLLAMA_URL"] == None:
-            ollama_url = "http://ollama:11434/v1"
-        else:
+        if "GOODBOI_OLLAMA_URL" in os.environ:
             ollama_url = os.environ["GOODBOI_OLLAMA_URL"]
+        else:
+            ollama_url = "http://ollama:11434/v1"
         self.ollama_client = AsyncClient(
             host=ollama_url,
         )
