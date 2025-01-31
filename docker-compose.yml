@@ -1,23 +1,22 @@
 services:
-  bot:
-    image: ghcr.io/rubikan/good-boi:latest
+  good-boi:
+    image: ghcr.io/rubikan/good-boi:master
+    container_name: good-boi
     restart: unless-stopped
+    pull_policy: always
     environment:
       GOODBOI_DISCORD_TOKEN: [INSERT TOKEN HERE]
       GOODBOI_ANNOUNCE_GUILDS: [GUILD1]:[CHANNEL1],[GUILD2]:[CHANNEL2]
       #GOODBOI_OLLAMA_URL: [OLLAMA_URL]
       REPLICATE_API_TOKEN: [INSERT TOKEN HERE]
-    build:
-      context: .
-      dockerfile: ./Dockerfile
 
   ollama:
     image: ollama/ollama:latest
+    container_name: good-boi-ollama
+    restart: unless-stopped
+    pull_policy: always
     volumes:
         - /var/lib/ollama/data:/root/.ollama
         - /var/lib/ollama/entrypoint.sh:/entrypoint.sh
-    container_name: ollama
-    pull_policy: always
     tty: true
-    restart: always
     entrypoint: ["/usr/bin/bash", "/entrypoint.sh"]
