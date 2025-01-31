@@ -34,7 +34,7 @@ jobs:
       - name: Build and push to Github Packages
         uses: docker/build-push-action@v2
         with:
-          context: "{{defaultContext}}:good-boi"
+          context: "{{defaultContext}}"
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
