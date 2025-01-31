@@ -17,7 +17,7 @@ class OllamaText(commands.Cog):
         if "GOODBOI_OLLAMA_URL" in os.environ:
             ollama_url = os.environ["GOODBOI_OLLAMA_URL"]
         else:
-            ollama_url = "http://ollama:11434"
+            ollama_url = "http://good-boi-ollama:11434"
         self.ollama_client = AsyncClient(
             host=ollama_url,
         )
