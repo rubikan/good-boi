@@ -9,7 +9,7 @@ pid=$!
 sleep 5
 
 echo "Retrieve models..."
-ollama pull deepseek-r1:32b
+ollama pull $OLLAMA_TXT_MODEL
 echo "Done!"
 
 # Wait for Ollama process to finish.

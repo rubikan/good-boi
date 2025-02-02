@@ -1,3 +1,6 @@
+x-common-vars: &common
+  OLLAMA_TXT_MODEL: [INSERT OLLAMA MODEL]
+
 services:
   good-boi:
     image: ghcr.io/rubikan/good-boi:master
@@ -9,6 +12,7 @@ services:
         condition: service_started
         restart: true
     environment:
+      <<: *common
       GOODBOI_DISCORD_TOKEN: [INSERT TOKEN HERE]
       GOODBOI_ANNOUNCE_GUILDS: [GUILD1]:[CHANNEL1],[GUILD2]:[CHANNEL2]
       #GOODBOI_OLLAMA_URL: [OLLAMA_URL]
@@ -19,6 +23,8 @@ services:
     container_name: good-boi-ollama
     restart: unless-stopped
     pull_policy: always
+    environment:
+      <<: *common
     volumes:
         - /var/lib/ollama/data:/root/.ollama
         - /var/lib/ollama/entrypoint.sh:/entrypoint.sh

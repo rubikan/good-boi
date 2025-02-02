@@ -8,8 +8,6 @@ EXPLOSM_LATEST = EXPLOSM_URL + "/comics/latest"
 EXPLOSM_SELECT_CONTAINER = "ComicSelector__Container-sc-tx5aab-0 eudaLQ"
 EXPLOSM_COMIC_CONTAINER = "MainComic__ComicImage-sc-ndbx87-2 lmqaxm"
 EXPLOSM_RANDOM_UPPER_LIMIT = 100
-# Ollama
-OLLAMA_TXT_MODEL = "deepseek-r1:32b"
 # Image Generator
 OJ_MODEL = "prompthero/openjourney:ad59ca21177f9e217b9075e7300cf6e14f7e5b4505b87b9689dbd866e9768969"
 SD_MODEL = "stability-ai/stable-diffusion:ac732df83cea7fff18b8472768c88ad041fa750ff7682a21affe81863cbe77e4"

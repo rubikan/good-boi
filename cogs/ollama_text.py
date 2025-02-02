@@ -24,7 +24,8 @@ class OllamaText(commands.Cog):
 
     @commands.command(help="Ask GoodBoi a question that will be answered using Ollama")
     async def ask(self, ctx, *, arg):
-        _log.info(f"Prompting ollama `{arg} with model {const.OLLAMA_TXT_MODEL}`...")
+        txt_model = os.environ["OLLAMA_TXT_MODEL"]
+        _log.info(f"Prompting ollama `{arg} with model {txt_model}`...")
         ollama_prompt = {"role": "user", "content": arg}
 
         msg_content = "I'm thinking..."
@@ -32,7 +33,7 @@ class OllamaText(commands.Cog):
         async with ctx.typing():
             msg_content = ""
             async for part in await self.ollama_client.chat(
-                model=const.OLLAMA_TXT_MODEL, messages=[ollama_prompt], stream=True
+                model=txt_model, messages=[ollama_prompt], stream=True
             ):
                 msg_content += part["message"]["content"]
                 await msg.edit(content=msg_content)
