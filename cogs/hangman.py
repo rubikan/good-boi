@@ -1,7 +1,8 @@
 import requests
 
-from util import ascii_hangman, const, discord_utils
 from discord.ext import commands
+from util import ascii_hangman, const
+from util.discord_utils import extract_clean_message, uid
 
 
 class HangmanState:
@@ -49,12 +50,8 @@ class Hangman(commands.Cog):
         self.bot = bot
 
     @staticmethod
-    def uid(ctx):
-        return ctx.message.author.id
-
-    @staticmethod
     async def printState(self, ctx):
-        game_state = Hangman.gameCache[self.uid(ctx)]
+        game_state = Hangman.gameCache[uid(ctx)]
         await ctx.send(game_state.ascii())
         await ctx.send(game_state.currentGuessedLetters())
         await ctx.send(game_state.currentWordState())
@@ -65,18 +62,18 @@ class Hangman(commands.Cog):
 
     @hangman.command(help="Starts a game of hangman")
     async def start(self, ctx):
-        if self.uid(ctx) in Hangman.gameCache:
+        if uid(ctx) in Hangman.gameCache:
             await ctx.send("We already have a game running!")
             await self.printState(self, ctx)
         else:
-            Hangman.gameCache[self.uid(ctx)] = HangmanState()
+            Hangman.gameCache[uid(ctx)] = HangmanState()
             await self.printState(self, ctx)
 
     @hangman.command(help="Stops currently running game of hangman for user")
     async def stop(self, ctx):
-        if self.uid(ctx) in Hangman.gameCache:
-            await ctx.send(f"THE SOLUTION WAS: {Hangman.gameCache[self.uid(ctx)].word}")
-            del Hangman.gameCache[self.uid(ctx)]
+        if uid(ctx) in Hangman.gameCache:
+            await ctx.send(f"THE SOLUTION WAS: {Hangman.gameCache[uid(ctx)].word}")
+            del Hangman.gameCache[uid(ctx)]
         else:
             await ctx.send("We don't have a game running!")
 
@@ -84,13 +81,13 @@ class Hangman(commands.Cog):
         aliases=["g"], help="Guess a letter or the whole word for your hangman game"
     )
     async def guess(self, ctx):
-        if self.uid(ctx) in Hangman.gameCache:
-            game_state = Hangman.gameCache[self.uid(ctx)]
-            arg = discord_utils.extract_clean_message(ctx)
+        if uid(ctx) in Hangman.gameCache:
+            game_state = Hangman.gameCache[uid(ctx)]
+            arg = extract_clean_message(ctx)
             if len(arg) > 1:
                 if game_state.guessWord(arg):
                     await ctx.send("CORRECT! YOU WIN!")
-                    del Hangman.gameCache[self.uid(ctx)]
+                    del Hangman.gameCache[uid(ctx)]
                     return
                 else:
                     await ctx.send("WRONG GUESS!")
@@ -106,7 +103,7 @@ class Hangman(commands.Cog):
                 await ctx.send(game_state.ascii())
                 await ctx.send("YOU LOST!")
                 await ctx.send(f"THE SOLUTION WAS: {game_state.word}")
-                del Hangman.gameCache[self.uid(ctx)]
+                del Hangman.gameCache[uid(ctx)]
         else:
             await ctx.send("We don't have a game running!")
 

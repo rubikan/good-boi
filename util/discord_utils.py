@@ -14,3 +14,10 @@ def extract_clean_message(ctx):
     for parent in ctx.invoked_parents:
         message_content = message_content.replace(parent, "")
     return message_content.strip()
+
+
+def uid(ctx):
+    """
+    Returns the uid from the author of the message in given context
+    """
+    return ctx.message.author.id
