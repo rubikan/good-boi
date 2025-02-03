@@ -106,6 +106,7 @@ class Hangman(commands.Cog):
                 await ctx.send(game_state.ascii())
                 await ctx.send("YOU LOST!")
                 await ctx.send(f"THE SOLUTION WAS: {game_state.word}")
+                del Hangman.gameCache[self.uid(ctx)]
         else:
             await ctx.send("We don't have a game running!")
 
