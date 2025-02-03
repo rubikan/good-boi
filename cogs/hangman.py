@@ -61,7 +61,7 @@ class Hangman(commands.Cog):
 
     @commands.group(aliases=["hm"], help="Play hangman", invoke_without_command=True)
     async def hangman(self, ctx):
-        await ctx.send("Subcommand not found")
+        await ctx.send("Subcommand missing!")
 
     @hangman.command(help="Starts a game of hangman")
     async def start(self, ctx):
