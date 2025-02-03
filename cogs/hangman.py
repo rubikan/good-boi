@@ -59,7 +59,7 @@ class Hangman(commands.Cog):
         await ctx.send(game_state.currentGuessedLetters())
         await ctx.send(game_state.currentWordState())
 
-    @commands.group(aliases=["hm"], invoke_without_command=True)
+    @commands.group(aliases=["hm"], help="Play hangman", invoke_without_command=True)
     async def hangman(self, ctx):
         await ctx.send("Subcommand not found")
 
