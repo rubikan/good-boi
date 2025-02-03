@@ -10,6 +10,7 @@ _log = logging.getLogger(__name__)
 EXTENSIONS = [
     "cogs.explosm",
     "cogs.general",
+    "cogs.hangman",
     "cogs.image_generator",
     "cogs.insult",
     "cogs.ollama_text",
