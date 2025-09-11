@@ -1,0 +1,13 @@
+[project]
+name = "good-boi"
+version = "0.1.0"
+description = "A good boi for your Discord server"
+readme = "README.md"
+requires-python = ">=3.13.2"
+dependencies = [
+    "beautifulsoup4==4.13.5",
+    "discord-py==2.6.3",
+    "replicate==1.0.7",
+    "requests==2.32.5",
+    "zalgo-text==0.6",
+]
