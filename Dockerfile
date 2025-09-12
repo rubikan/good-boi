@@ -1,8 +1,8 @@
 FROM ghcr.io/astral-sh/uv:python3.13-alpine
 
-COPY . .
-
 WORKDIR /app
+
+COPY . .
 RUN uv sync --locked
 
-CMD ["python", "main.py"]
+CMD ["uv", "run", "/app/main.py"]
