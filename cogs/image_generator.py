@@ -31,15 +31,7 @@ class ImageGenerator(commands.Cog):
         msg = await ctx.send(f"Generating image for prompt `{prompt}`...")
         async with ctx.typing():
             try:
-                input = {
-                    "prompt": prompt,
-                    "scheduler": kwargs.get("scheduler") or "K_EULER",
-                    "width": kwargs.get("width") or 1024,
-                    "height": kwargs.get("height") or 1024,
-                    "guidance_scale": kwargs.get("guidance_scale") or 3,
-                    "negative_prompt": "ugly, deformed, noisy, blurry, distorted",
-                    "num_inference_steps": kwargs.get("num_inference_steps") or 25,
-                }
+                input = {"prompt": prompt, "aspect_ratio": "4:3"}
 
                 output = await run_blocking(
                     ctx.bot,
@@ -48,14 +40,10 @@ class ImageGenerator(commands.Cog):
                     input=input,
                 )
 
-                if type(output) == list:
-                    image = output[0]
-                # it's a generator?
-                else:
-                    image = next(output)
+                image_url = output.url
 
                 embed = discord.Embed(title=prompt, color=const.EMBED_COLOR)
-                embed.set_image(url=image)
+                embed.set_image(url=image_url)
                 await msg.edit(
                     content=None,
                     embed=embed,
@@ -68,21 +56,9 @@ class ImageGenerator(commands.Cog):
                     content=f"Failed to generate image for prompt `{prompt}`. Reason: `{e}`"
                 )
 
-    @commands.command(aliases=["oj"], help="Generate an open journey image")
-    async def openjourney(self, ctx, *, arg):
-        await self.generate(ctx, arg, const.OJ_MODEL, width=1024, height=768)
-
-    @commands.command(aliases=["pkm"], help="Generate a pokemon image")
-    async def pokemon(self, ctx, *, arg):
-        await self.generate(ctx, arg, const.PKM_MODEL)
-
-    @commands.command(aliases=["sd"], help="Generate a stable diffusion image")
-    async def stable_diffusion(self, ctx, *, arg):
-        await self.generate(ctx, arg, const.SD_MODEL)
-
-    @commands.command(aliases=["pg"], help="Generate a playground image")
-    async def playground(self, ctx, *, arg):
-        await self.generate(ctx, arg, const.PG_MODEL, scheduler="DPMSolver++")
+    @commands.command(aliases=["image"], help="Generate an open journey image")
+    async def imagen(self, ctx, *, arg):
+        await self.generate(ctx, arg, const.IMAGEN_MODEL, width=1024, height=768)
 
 
 async def setup(bot):

@@ -13,7 +13,7 @@ EXTENSIONS = [
     "cogs.hangman",
     "cogs.image_generator",
     "cogs.insult",
-    "cogs.ollama_text",
+    "cogs.chat",
     "cogs.reddit",
     "cogs.xkcd",
 ]
@@ -42,14 +42,15 @@ class GoodBoiBot(commands.Bot):
 
     async def on_ready(self):
         await self.change_presence(activity=discord.Game(name="boi help"))
-        announce_guild_data = os.environ["GOODBOI_ANNOUNCE_GUILDS"]
-        for announce_guild in announce_guild_data.split(","):
-            current_guild = announce_guild.split(":")
-            guild_id = int(current_guild[0])
-            guild = self.get_guild(guild_id)
-            channel_id = int(current_guild[1])
-            channel = guild.get_channel(channel_id)
-            await channel.send(const.START_MESSAGE)
+        announce_guild_data = os.environ.get("GOODBOI_ANNOUNCE_GUILDS")
+        if announce_guild_data:
+            for announce_guild in announce_guild_data.split(","):
+                current_guild = announce_guild.split(":")
+                guild_id = int(current_guild[0])
+                guild = self.get_guild(guild_id)
+                channel_id = int(current_guild[1])
+                channel = guild.get_channel(channel_id)
+                await channel.send(const.START_MESSAGE)
 
 
 logging.basicConfig(
