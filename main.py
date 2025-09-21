@@ -8,12 +8,13 @@ from util import const
 _log = logging.getLogger(__name__)
 
 EXTENSIONS = [
+    "cogs.auto_answer",
+    "cogs.chat",
     "cogs.explosm",
     "cogs.general",
     "cogs.hangman",
     "cogs.image_generator",
     "cogs.insult",
-    "cogs.chat",
     "cogs.reddit",
     "cogs.xkcd",
 ]
